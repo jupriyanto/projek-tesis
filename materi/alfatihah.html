@@ -1,0 +1,1060 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pembelajaran Surah Al-Fatihah - Mari Belajar Al-Qur'an</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js untuk tab & interaksi halus -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- Google Fonts: Inter & Amiri (Aksara Arab) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Amiri", serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white"
+    x-data="{ activeTab: 'keutamaan' }"
+  >
+    <!-- NAVBAR -->
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a href="../index.html" class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+            >
+              📖
+            </div>
+            <span class="font-bold text-xl text-slate-900 tracking-tight"
+              >Mari Belajar <span class="text-emerald-600">Alquran</span></span
+            >
+          </a>
+
+          <!-- Navigation Links -->
+          <div
+            class="hidden md:flex items-center space-x-8 font-medium text-slate-600"
+          >
+            <a href="../index.html" class="hover:text-emerald-600 transition"
+              >Beranda</a
+            >
+            <a
+              href="../dalil-alquran.html"
+              class="hover:text-emerald-600 transition"
+              >Dalil Al-Qur'an</a
+            >
+            <a href="../surah.html" class="hover:text-emerald-600 transition"
+              >Daftar Surah</a
+            >
+            <a
+              href="../materi-tajwid.html"
+              class="hover:text-emerald-600 transition"
+              >Materi Tajwid</a
+            >
+            <a
+              href="../latihan-tajwid.html"
+              class="hover:text-emerald-600 transition"
+              >Latihan</a
+            >
+          </div>
+
+          <!-- Back Button -->
+          <div>
+            <a
+              href="../materi-tajwid.html"
+              class="px-4 py-2.5 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition inline-flex items-center gap-2"
+            >
+              ← Kembali ke Materi
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO HEADER -->
+    <section
+      class="bg-gradient-to-br from-emerald-900 via-emerald-800 to-slate-900 text-white py-12 lg:py-16 relative overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div
+          class="flex flex-col lg:flex-row items-center justify-between gap-8"
+        >
+          <div class="space-y-4 text-center lg:text-left max-w-2xl">
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-800/80 border border-emerald-700 text-xs font-semibold text-emerald-200 uppercase tracking-wider"
+            >
+              <span>✨ Surah Ke-1 • Ummul Kitab</span>
+            </div>
+            <h1
+              class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight"
+            >
+              Fasih Membaca Surah Al-Fatihah
+            </h1>
+            <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+              Panduan komprehensif mengenai keutamaan, pentingnya fasohah
+              bacaan, hukum tajwid, makharijul huruf, hingga sifat huruf dalam
+              Surah Al-Fatihah.
+            </p>
+          </div>
+
+          <!-- Kaligrafi & Badge Header -->
+          <div
+            class="bg-white/10 backdrop-blur-md p-6 rounded-3xl border border-white/10 text-center w-full lg:w-auto min-w-[280px]"
+          >
+            <span
+              class="text-xs text-emerald-200 font-semibold uppercase tracking-widest block mb-2"
+              >Nama Surah</span
+            >
+            <h2
+              class="font-arabic text-4xl sm:text-5xl font-bold my-2 text-amber-300"
+            >
+              الفاتحة
+            </h2>
+            <p class="text-xs text-emerald-100">
+              7 Ayat • Makkiyah • Fatihatul Kitab
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACAAN SURAH AL-FATIHAH -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
+      <div
+        class="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-100 space-y-6"
+      >
+        <div
+          class="flex items-center justify-between border-b border-slate-100 pb-4"
+        >
+          <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+            <span class="text-2xl">📜</span> Teks Lengkap Surah Al-Fatihah
+          </h2>
+          <span
+            class="text-xs font-semibold px-3 py-1 bg-emerald-50 text-emerald-700 rounded-lg"
+            >Ayat 1-7</span
+          >
+        </div>
+
+        <div class="space-y-6 divide-y divide-slate-100">
+          <!-- Basmalah (Ayat 1) -->
+          <div class="pt-2 text-center flex flex-col items-center">
+            <p
+              class="font-arabic text-3xl sm:text-4xl text-emerald-800 font-bold leading-loose"
+            >
+              بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+            </p>
+            <p class="text-xs sm:text-sm text-slate-500 italic mt-2">
+              "Dengan nama Allah Yang Maha Pengasih, Maha Penyayang."
+            </p>
+            <!-- Audio Basmalah -->
+            <audio
+              controls
+              class="h-8 w-56 mt-3 accent-emerald-600 rounded-lg shadow-sm"
+            >
+              <source
+                src="https://everyayah.com/data/Alafasy_128kbps/001001.mp3"
+                type="audio/mpeg"
+              />
+              Browser Anda tidak mendukung pemutar audio.
+            </audio>
+          </div>
+
+          <!-- Ayat 2 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >2</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001002.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Segala puji bagi Allah, Tuhan seluruh alam.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ayat 3 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >3</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001003.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Yang Maha Pengasih, Maha Penyayang.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ayat 4 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >4</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001004.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                مَٰلِكِ يَوْمِ ٱلدِّينِ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Pemilik hari pembalasan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ayat 5 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >5</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001005.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah
+                kami memohon pertolongan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ayat 6 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >6</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001006.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                ٱهْدِنَا ٱلصِّرَٰطَ ٱلْمُسْتَقِيمَ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                Tunjukilah kami jalan yang lurus.
+              </p>
+            </div>
+          </div>
+
+          <!-- Ayat 7 -->
+          <div
+            class="pt-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+          >
+            <div class="flex items-center gap-3 shrink-0">
+              <span
+                class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center shrink-0"
+                >7</span
+              >
+              <audio controls class="h-8 w-44 accent-emerald-600 rounded-lg">
+                <source
+                  src="https://everyayah.com/data/Alafasy_128kbps/001007.mp3"
+                  type="audio/mpeg"
+                />
+              </audio>
+            </div>
+            <div class="text-right w-full">
+              <p
+                class="font-arabic text-2xl sm:text-3xl text-slate-800 font-bold leading-loose"
+              >
+                صِرَٰطَ ٱلَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ ٱلْمَغْضُوبِ
+                عَلَيْهِمْ وَلَا ٱلضَّآلِّينَ
+              </p>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1">
+                (Yaitu) jalan orang-orang yang telah Engkau beri nikmat
+                kepadanya; bukan (jalan) mereka yang dimurkai, dan bukan (pula
+                jalan) mereka yang sesat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NAVIGATION TABS MATERI -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Tab Navigation -->
+      <div
+        class="flex flex-wrap gap-2 border-b border-slate-200 pb-4 mb-8 justify-center sm:justify-start"
+      >
+        <button
+          @click="activeTab = 'keutamaan'"
+          :class="activeTab === 'keutamaan' ? 'bg-emerald-600 text-white font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100'"
+          class="px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm border border-slate-200/80"
+        >
+          🌟 Keutamaan
+        </button>
+        <button
+          @click="activeTab = 'urgensi'"
+          :class="activeTab === 'urgensi' ? 'bg-emerald-600 text-white font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100'"
+          class="px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm border border-slate-200/80"
+        >
+          ⚠️ Urgensi & Kesalahan Bacaan
+        </button>
+        <button
+          @click="activeTab = 'tajwid'"
+          :class="activeTab === 'tajwid' ? 'bg-emerald-600 text-white font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100'"
+          class="px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm border border-slate-200/80"
+        >
+          📖 Hukum Tajwid
+        </button>
+        <button
+          @click="activeTab = 'makhraj'"
+          :class="activeTab === 'makhraj' ? 'bg-emerald-600 text-white font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100'"
+          class="px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm border border-slate-200/80"
+        >
+          🗣️ Makharijul Huruf
+        </button>
+        <button
+          @click="activeTab = 'sifat'"
+          :class="activeTab === 'sifat' ? 'bg-emerald-600 text-white font-semibold' : 'bg-white text-slate-600 hover:bg-slate-100'"
+          class="px-5 py-2.5 rounded-xl text-xs sm:text-sm transition shadow-sm border border-slate-200/80"
+        >
+          ✨ Sifat Huruf
+        </button>
+      </div>
+
+      <!-- CONTENT TAB 1: KEUTAMAAN MEMBACA SURAH AL-FATIHAH -->
+      <div x-show="activeTab === 'keutamaan'" x-transition class="space-y-6">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-900">
+            Keutamaan Membaca Surah Al-Fatihah
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Mengapa Surah Al-Fatihah memiliki kedudukan yang sangat istimewa
+            dalam Islam?
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              1
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Wajib Dibaca dalam Salat
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Membaca Al-Fatihah merupakan bagian penting dalam salat.
+              Rasulullah ﷺ bersabda bahwa salat tidak sempurna bagi orang yang
+              tidak membaca Fatihatul Kitab.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              2
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Ummul Kitab (Induk Al-Qur'an)
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Al-Fatihah disebut Ummul Kitab karena mengandung pokok-pokok
+              ajaran Al-Qur'an, seperti tauhid, pujian kepada Allah, ibadah, dan
+              permohonan petunjuk.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              3
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Doa Memohon Petunjuk
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Ayat <em>“Ihdinash-shirathal mustaqim”</em> berarti “Tunjukilah
+              kami jalan yang lurus.” Ayat ini mengajarkan kita untuk senantiasa
+              memohon petunjuk Allah.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              4
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Pujian Kepada Allah
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Al-Fatihah dimulai dengan <em>Alhamdulillahi Rabbil ‘alamin</em>,
+              yaitu pujian dan rasa syukur kepada Allah sebagai Tuhan seluruh
+              alam.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              5
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Penghambaan Kepada Allah
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Dalam ayat <em>“Iyyaka na’budu wa iyyaka nasta’in”</em>, kita
+              menyatakan bahwa hanya kepada Allah kita beribadah dan hanya
+              kepada-Nya kita memohon pertolongan.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition"
+          >
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center mb-4"
+            >
+              6
+            </div>
+            <h3 class="font-bold text-slate-900 text-lg mb-2">
+              Rasa Dekat Kepada Allah
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Membaca Al-Fatihah dengan memahami maknanya dapat membantu
+              seseorang menghayati hubungan antara dirinya dengan Allah dalam
+              doa dan ibadah.
+            </p>
+          </div>
+
+          <div
+            class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:border-emerald-500 transition md:col-span-2 lg:col-span-3"
+          >
+            <div class="flex items-start gap-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 font-bold flex items-center justify-center shrink-0"
+              >
+                7
+              </div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-lg mb-1">
+                  Memohon Keselamatan dari Jalan yang Salah
+                </h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                  Pada bagian akhir, kita memohon agar Allah membimbing kita ke
+                  jalan yang benar dan menjauhkan dari jalan orang-orang yang
+                  mendapat kemurkaan dan kesesatan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT TAB 2: URGENSI & KESALAHAN BACAAN -->
+      <div x-show="activeTab === 'urgensi'" x-transition class="space-y-6">
+        <div class="mb-6">
+          <h2 class="text-2xl font-bold text-slate-900">
+            Urgensi Apabila Salah dalam Membaca Surah Al-Fatihah
+          </h2>
+          <p class="text-slate-500 text-sm mt-1">
+            Mengapa kita harus terus memperbaikinya dan terhindar dari kesalahan
+            bacaan?
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <div
+            class="bg-rose-50/50 p-6 rounded-2xl border border-rose-100 flex gap-4"
+          >
+            <span class="text-2xl">1️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Memengaruhi Keabsahan Salat
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Dalam fikih, membaca Al-Fatihah merupakan bagian penting dari
+                salat bagi orang yang mampu. Karena itu, kesalahan bacaan yang
+                mengubah huruf, kata, atau makna perlu diperbaiki.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-amber-50/50 p-6 rounded-2xl border border-amber-100 flex gap-4"
+          >
+            <span class="text-2xl">2️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Kesalahan Makhraj Mengubah Makna
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Perbedaan pengucapan huruf Arab tertentu dapat menyebabkan kata
+                yang dibaca berbeda dari lafaz yang seharusnya. Contohnya,
+                perbedaan antara huruf <strong>ض (dhad)</strong> dan
+                <strong>ظ (zha)</strong> perlu diperhatikan.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200/60 flex gap-4"
+          >
+            <span class="text-2xl">3️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Kesalahan Tajwid Mengurangi Ketepatan
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Penerapan panjang-pendek (mad), tasydid, dan hukum bacaan
+                lainnya membantu menjaga bacaan Al-Fatihah sebagaimana mestinya.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-slate-100/80 p-6 rounded-2xl border border-slate-200/60 flex gap-4"
+          >
+            <span class="text-2xl">4️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Mengurangi Penghayatan Ayat
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Jika seseorang hanya menghafal bunyi tanpa memahami maknanya, ia
+                akan lebih sulit menghayati Al-Fatihah sebagai pujian,
+                penghambaan, dan doa kepada Allah SWT.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-100 flex gap-4"
+          >
+            <span class="text-2xl">5️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Pentingnya Belajar Membaca Al-Qur'an
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Kesalahan membaca bukan alasan untuk berhenti beribadah. Justru
+                seseorang perlu terus belajar dan memperbaiki bacaannya secara
+                bertahap dengan bimbingan guru atau ustaz yang kompeten.
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-100 flex gap-4"
+          >
+            <span class="text-2xl">6️⃣</span>
+            <div>
+              <h3 class="font-bold text-slate-900 mb-1">
+                Penting Bagi Anak-Anak & Pelajar
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Kemampuan membaca Al-Fatihah dengan benar sebaiknya dibangun
+                sejak dini karena bacaan ini akan terus digunakan dalam ibadah
+                sehari-hari.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Reference Card -->
+        <div
+          class="mt-8 bg-slate-900 text-white rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-xl shrink-0"
+            >
+              ▶
+            </div>
+            <div>
+              <h4 class="font-bold text-base">
+                Panduan Ibadah: Kesalahan dalam Membaca Al-Fatihah
+              </h4>
+              <p class="text-xs text-slate-400">
+                Tata Cara Sholat dan Perbaikan Bacaan Al-Fatihah
+              </p>
+            </div>
+          </div>
+          <a
+            href="https://youtu.be/V-6RSL0B0pU?si=ZnC1Rg1NS9r31I2Z"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-xs font-semibold transition shrink-0"
+          >
+            Tonton Video Rujukan ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- CONTENT TAB 3: TAJWID DALAM SURAH AL-FATIHAH -->
+      <div x-show="activeTab === 'tajwid'" x-transition class="space-y-8">
+        <div
+          class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-4"
+        >
+          <h2 class="text-2xl font-bold text-slate-900">
+            Pengertian Ilmu Tajwid
+          </h2>
+
+          <div class="grid lg:grid-cols-2 gap-6 pt-2">
+            <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+              <span
+                class="text-xs font-bold text-emerald-700 uppercase tracking-wider block mb-2"
+                >Menurut Bahasa</span
+              >
+              <p class="text-slate-700 text-sm leading-relaxed">
+                Tajwid (تَجْوِيْدٌ) merupakan <em>mashdar</em> dari fi’il madhi
+                (جَوَّدَ) yang berarti <strong>(التَّحْسِيْنُ)</strong> yaitu
+                membaguskan, menyempurnakan, dan memantapkan.
+              </p>
+            </div>
+
+            <div
+              class="p-4 bg-slate-50 rounded-xl border border-slate-100 space-y-2"
+            >
+              <span
+                class="text-xs font-bold text-emerald-700 uppercase tracking-wider block"
+                >Menurut Istilah</span
+              >
+              <p
+                class="font-arabic text-xl text-right text-slate-800 leading-loose font-bold"
+              >
+                التَّجْوِيْدٌ هُوَعِلمٌ يُعْرَفُ بِهِ إِعْطَاءُ كُلِّ حَرْفٍ
+                حَقَّهُ وَمُسْتَحَقَّهُ مِنَ الصِّفَاتِ وَالْمُدُوْدِ
+                وَغَيرِذَلِك كالتَّرْقِيْقِ وَالتَّفْخِيْمِ وَنَحْوِهِمَا
+              </p>
+              <p class="text-xs text-slate-600 italic">
+                "Ilmu Tajwîd adalah ilmu yang berguna untuk mengetahui bagaimana
+                cara memenuhkan/memberikan hak huruf dan mustahaqnya. Baik yang
+                berkaitan dengan sifat, mad dan sebagainya, seperti tarqîq dan
+                tafkhîm dan selain keduanya."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabel Hukum Bacaan -->
+        <div class="space-y-4">
+          <h3 class="text-xl font-bold text-slate-900">
+            Hukum Bacaan Tajwid dalam Surah Al-Fatihah
+          </h3>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3"
+            >
+              <div class="flex justify-between items-center">
+                <h4 class="font-bold text-emerald-800 text-lg">
+                  Alif Lam Syamsiyah
+                </h4>
+                <span
+                  class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-md font-semibold"
+                  >Tajwid</span
+                >
+              </div>
+              <p class="text-xs text-slate-600">
+                Lam pada <strong>ال</strong> tidak terdengar karena melebur saat
+                bertemu huruf syamsiyah.
+              </p>
+              <div class="p-3 bg-slate-50 rounded-xl space-y-2">
+                <span class="text-xs font-semibold text-slate-500"
+                  >Contoh Lafaz:</span
+                >
+                <div
+                  class="flex flex-wrap gap-2 text-right justify-end font-arabic text-2xl font-bold text-emerald-700"
+                >
+                  <span>الرَّحْمٰنِ</span> • <span>الرَّحِيمِ</span> •
+                  <span>الدِّينِ</span> • <span>الصِّرَاطَ</span> •
+                  <span>الضَّالِّينَ</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3"
+            >
+              <div class="flex justify-between items-center">
+                <h4 class="font-bold text-emerald-800 text-lg">
+                  Alif Lam Qamariyah
+                </h4>
+                <span
+                  class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-md font-semibold"
+                  >Tajwid</span
+                >
+              </div>
+              <p class="text-xs text-slate-600">
+                Lam pada <strong>ال</strong> dibaca dengan jelas dan terang.
+              </p>
+              <div class="p-3 bg-slate-50 rounded-xl space-y-2">
+                <span class="text-xs font-semibold text-slate-500"
+                  >Contoh Lafaz:</span
+                >
+                <div
+                  class="flex flex-wrap gap-2 text-right justify-end font-arabic text-2xl font-bold text-emerald-700"
+                >
+                  <span>الْحَمْدُ</span> • <span>الْعَالَمِينَ</span> •
+                  <span>الْمُسْتَقِيمَ</span> •
+                  <span>الْمَغْضُوبِ</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3"
+            >
+              <div class="flex justify-between items-center">
+                <h4 class="font-bold text-emerald-800 text-lg">Mad Thabi'i</h4>
+                <span
+                  class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-md font-semibold"
+                  >Tajwid</span
+                >
+              </div>
+              <p class="text-xs text-slate-600">
+                Membunyikan huruf hijaiyah dengan cara dipanjangkan sepanjang 2
+                harakat (1 alif).
+              </p>
+              <div class="p-3 bg-slate-50 rounded-xl space-y-2">
+                <span class="text-xs font-semibold text-slate-500"
+                  >Contoh Lafaz:</span
+                >
+                <div
+                  class="flex flex-wrap gap-2 text-right justify-end font-arabic text-2xl font-bold text-emerald-700"
+                >
+                  <span>مَالِكِ</span> • <span>إِيَّاكَ</span> •
+                  <span>نَسْتَعِينُ</span> • <span>اهْدِنَا</span> •
+                  <span>الضَّالِّينَ</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm space-y-3"
+            >
+              <div class="flex justify-between items-center">
+                <h4 class="font-bold text-emerald-800 text-lg">Izhar Halqi</h4>
+                <span
+                  class="text-xs bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-md font-semibold"
+                  >Tajwid</span
+                >
+              </div>
+              <p class="text-xs text-slate-600">
+                Nun sukun (نْ) bertemu huruf <strong>ع</strong> (salah satu
+                huruf halqi), sehingga nun dibaca jelas.
+              </p>
+              <div class="p-3 bg-slate-50 rounded-xl space-y-2">
+                <span class="text-xs font-semibold text-slate-500"
+                  >Contoh Lafaz:</span
+                >
+                <div
+                  class="text-right font-arabic text-2xl font-bold text-emerald-700"
+                >
+                  <span>أَنْعَمْتَ</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT TAB 4: MAKHARIJUL HURUF -->
+      <div x-show="activeTab === 'makhraj'" x-transition class="space-y-8">
+        <div
+          class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-6"
+        >
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">
+              Pengertian Makharijul Huruf
+            </h2>
+            <p class="text-slate-500 text-sm mt-1">
+              Definisi secara morfologi, bahasa, dan istilah.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3"
+            >
+              <span
+                class="text-xs font-bold text-emerald-700 uppercase tracking-wider block"
+                >Secara Bahasa & Morfologi</span
+              >
+              <p class="font-arabic text-xl font-bold text-slate-800">
+                مَوْضِعُ الْخُرُوْجِ
+                <span class="text-sm font-sans font-normal text-slate-600"
+                  >(Tempat keluar)</span
+                >
+              </p>
+              <p class="text-xs text-slate-600 leading-relaxed">
+                Berasal dari Fi’il Madhi: <strong>خَرَجَ</strong> (artinya
+                keluar), lalu dijadikan ber-wazan
+                <strong>مَفْعَلٌ</strong> (Isim Makan) menjadi
+                <strong>مَخْرَجٌ</strong>. Bentuk jamaknya adalah
+                <strong>مَخَارِجُ</strong>. Maka Makharijul Huruf artinya:
+                Tempat-tempat keluarnya huruf.
+              </p>
+            </div>
+
+            <div
+              class="bg-slate-50 p-5 rounded-xl border border-slate-100 space-y-3"
+            >
+              <span
+                class="text-xs font-bold text-emerald-700 uppercase tracking-wider block"
+                >Secara Istilah</span
+              >
+              <p
+                class="font-arabic text-xl font-bold text-right text-slate-800 leading-loose"
+              >
+                هُوَ إِسْمٌ لِلْمَحَلِّ الَّذِى يُنْشَأُمِنْهُ الحَرْفُ
+              </p>
+              <p class="text-xs text-slate-600 italic">
+                "Suatu nama tempat, yang pada tempat tersebut huruf dibentuk
+                (atau diucapkan)."
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-100 space-y-4">
+            <h3 class="font-bold text-lg text-slate-900">
+              Urgensi Mempelajari Makhraj
+            </h3>
+            <p class="text-slate-600 text-sm leading-relaxed">
+              Seseorang yang sedang tilawah Al-Qur’an tidak akan bisa membedakan
+              huruf satu dengan huruf yang lain tanpa mengerti pelafalan huruf
+              itu pada tempat keluarnya. Hal ini sangat penting untuk mencegah
+              kesalahan fatal berupa perubahan makna.
+            </p>
+
+            <div
+              class="bg-rose-50 border border-rose-200 rounded-2xl p-6 space-y-4"
+            >
+              <div
+                class="flex items-center gap-2 text-rose-800 font-bold text-sm"
+              >
+                <span>⚠️</span> Contoh Kesalahan Pengucapan yang Mengubah Makna:
+              </div>
+
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-rose-100">
+                  <span
+                    class="text-xs font-semibold text-emerald-700 block mb-1"
+                    >✅ Bacaan yang Benar (Huruf 'Ain):</span
+                  >
+                  <p
+                    class="font-arabic text-2xl text-right font-bold text-slate-800 my-2"
+                  >
+                    اَلْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ
+                  </p>
+                  <p class="text-xs text-slate-600">
+                    <em>"Segala puji bagi Allah Rabb semesta Alam"</em>
+                  </p>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-rose-100">
+                  <span class="text-xs font-semibold text-rose-600 block mb-1"
+                    >❌ Bacaan Salah ('Ain berubah jadi Hamzah):</span
+                  >
+                  <p
+                    class="font-arabic text-2xl text-right font-bold text-rose-700 my-2"
+                  >
+                    اَلْحَمْدُ لِلَّهِ رَبِّ الْئَالَمِينَ
+                  </p>
+                  <p class="text-xs text-rose-800 font-medium">
+                    <em
+                      >"Segala puji bagi Allah Rabb rajanya segala penyakit"</em
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTENT TAB 5: SIFAT HURUF -->
+      <div x-show="activeTab === 'sifat'" x-transition class="space-y-8">
+        <div
+          class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/80 shadow-sm space-y-6"
+        >
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Sifat-Sifat Huruf</h2>
+            <p class="text-slate-500 text-sm mt-1">
+              Karakteristik yang melekat pada huruf saat diucapkan dari
+              makhrajnya.
+            </p>
+          </div>
+
+          <div
+            class="p-5 bg-slate-50 rounded-xl border border-slate-100 space-y-2"
+          >
+            <span
+              class="text-xs font-bold text-emerald-700 uppercase tracking-wider block"
+              >Pengertian Menurut Istilah</span
+            >
+            <p
+              class="font-arabic text-xl sm:text-2xl font-bold text-right text-slate-800 leading-loose"
+            >
+              كَيْفِيَّةٌ عَارِضَةٌ لِلحَرْفِ عِنْدَ حُصُوْلِهِ فِى الْمَخْرَجِ
+              مِنَ الْجَهْرِ وَالْرَّخَاوَةِ وَمَا أشْبَهَ ذَلِكَ
+            </p>
+            <p class="text-xs text-slate-600 italic">
+              "Sifat yang baru datang pada saat huruf itu keluar dari makhrajnya
+              yaitu: Jelas, lunak, dan lain sebagainya."
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 pt-2">
+            <div
+              class="p-5 bg-emerald-50/60 rounded-2xl border border-emerald-100 space-y-2"
+            >
+              <h3 class="font-bold text-emerald-900 text-base">Tujuan Utama</h3>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                Agar huruf yang keluar dari mulut semakin sesuai dengan keaslian
+                huruf-huruf Al-Qur’an. Huruf yang sudah tepat makhrajnya belum
+                tentu dapat dipastikan kebenarannya jika belum sesuai dengan
+                sifat aslinya.
+              </p>
+            </div>
+
+            <div
+              class="p-5 bg-amber-50/60 rounded-2xl border border-amber-100 space-y-2"
+            >
+              <h3 class="font-bold text-amber-900 text-base">
+                Contoh Penerapan (Huruf Dal)
+              </h3>
+              <p class="text-slate-700 text-sm leading-relaxed">
+                Ketika huruf <strong>د (dal)</strong> dibaca sukun dan diucapkan
+                sesuai makhrajnya, tetapi tidak disertai sifat aslinya yaitu
+                <strong>Qalqalah</strong> (pantulan), maka bacaannya belum
+                sempurna secara tajwid.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 bg-slate-900 text-white rounded-2xl space-y-3">
+            <h3 class="font-bold text-emerald-400 text-base">
+              Perbedaan Sifat Huruf dan Julukan Huruf
+            </h3>
+            <p class="text-slate-300 text-sm leading-relaxed">
+              Sifat-sifat huruf dalam tajwid adalah sifat yang jika diabaikan
+              akan memengaruhi suara tersebut (seperti sifat
+              <em>hams, jahr, istifal, isti'la</em>). Hal ini berbeda dengan
+              <strong>julukan huruf</strong> di mana huruf dikaitkan pada bagian
+              mulut tertentu (seperti huruf-huruf <em>Syajriyah</em> dan
+              <em>Nath’iyah</em>).
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-16"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm">
+          &copy; <span id="year"></span> Mari Belajar Al-Qur'an. Dibuat dengan
+          HTML, CSS & JavaScript.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

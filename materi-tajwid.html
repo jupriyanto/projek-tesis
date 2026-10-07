@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Materi Surah Pilihan - Mari Belajar Al-Qur'an</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js untuk fitur pencarian & filter interaktif tanpa refresh -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
+    <!-- Google Fonts: Inter & Amiri (Font Arab) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Amiri", serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white"
+    x-data="materiApp()"
+  >
+    <!-- NAVBAR -->
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+            >
+              📖
+            </div>
+            <span class="font-bold text-xl text-slate-900 tracking-tight"
+              >Mari Belajar <span class="text-emerald-600">Alquran</span></span
+            >
+          </a>
+
+          <!-- Navigation Links -->
+          <div
+            class="hidden md:flex items-center space-x-8 font-medium text-slate-600"
+          >
+            <a href="index.html" class="hover:text-emerald-600 transition"
+              >Beranda</a
+            >
+            <a
+              href="dalil-alquran.html"
+              class="hover:text-emerald-600 transition"
+              >Dalil Al-Qur'an</a
+            >
+            <a href="surah.html" class="hover:text-emerald-600 transition"
+              >Daftar Surah</a
+            >
+            <a href="materi.html" class="text-emerald-600 font-semibold"
+              >Materi Tajwid</a
+            >
+            <a href="latihan.html" class="hover:text-emerald-600 transition"
+              >Latihan</a
+            >
+          </div>
+
+          <!-- Back Button -->
+          <div>
+            <a
+              href="index.html"
+              class="px-4 py-2.5 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 rounded-xl transition inline-flex items-center gap-2"
+            >
+              ← Kembali
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HEADER & SEARCH BAR -->
+    <section
+      class="bg-gradient-to-b from-emerald-900 via-emerald-800 to-emerald-900 text-white py-12 sm:py-16 relative overflow-hidden"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center"
+      >
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-4">
+          Materi Surah Pilihan
+        </h1>
+        <p class="text-emerald-100 text-sm sm:text-base max-w-2xl mx-auto mb-8">
+          Pilih dan pelajari surah Al-Fatihah, Al-Ikhlas, Al-Falaq, dan An-Nas
+          lengkap dengan teks Arab, terjemahan, serta materi tajwid &
+          makhrajnya.
+        </p>
+
+        <!-- Input Pencarian -->
+        <div class="max-w-2xl mx-auto relative">
+          <div
+            class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400"
+          >
+            🔍
+          </div>
+          <input
+            type="text"
+            x-model="search"
+            placeholder="Cari nama surah atau nomor (contoh: Al-Fatihah, 112, An-Nas)..."
+            class="w-full pl-11 pr-4 py-4 rounded-2xl bg-white text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-4 focus:ring-emerald-400/50 shadow-xl transition"
+          />
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex justify-center gap-2 mt-6">
+          <button
+            @click="filter = 'all'"
+            :class="filter === 'all' ? 'bg-white text-emerald-900 font-bold' : 'bg-emerald-800/60 text-emerald-100 hover:bg-emerald-700'"
+            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition"
+          >
+            Semua
+          </button>
+          <button
+            @click="filter = 'Makkiyah'"
+            :class="filter === 'Makkiyah' ? 'bg-white text-emerald-900 font-bold' : 'bg-emerald-800/60 text-emerald-100 hover:bg-emerald-700'"
+            class="px-4 py-2 rounded-xl text-xs sm:text-sm font-medium transition"
+          >
+            Makkiyah
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID CARD SURAH -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Info Jumlah Surah -->
+      <div class="flex justify-between items-center mb-6">
+        <p class="text-sm font-medium text-slate-500">
+          Menampilkan
+          <span
+            class="font-bold text-slate-800"
+            x-text="filteredSurahs.length"
+          ></span>
+          materi surah
+        </p>
+      </div>
+
+      <!-- Grid Container -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        <template x-for="s in filteredSurahs" :key="s.nomor">
+          <!-- SELURUH KARTU DAPAT DIKLIK DAN MENGARAHKAN SESUAI LINK TERKAIT -->
+          <a
+            :href="s.link"
+            class="bg-white rounded-2xl p-6 border border-slate-200/80 hover:border-emerald-500 hover:shadow-xl transition group relative flex flex-col justify-between block cursor-pointer"
+          >
+            <div>
+              <!-- Top Header Card -->
+              <div class="flex items-center justify-between mb-4">
+                <!-- Nomor Surah Badge -->
+                <div class="flex items-center space-x-3">
+                  <div
+                    class="w-12 h-12 rounded-xl bg-emerald-50 group-hover:bg-emerald-600 text-emerald-700 group-hover:text-white font-bold text-lg flex items-center justify-center transition shadow-sm"
+                    x-text="s.nomor"
+                  ></div>
+                  <div>
+                    <h3
+                      class="font-bold text-xl text-slate-900 group-hover:text-emerald-600 transition"
+                      x-text="s.nama"
+                    ></h3>
+                    <p class="text-xs text-slate-500" x-text="s.arti"></p>
+                  </div>
+                </div>
+
+                <!-- Teks Arab -->
+                <span
+                  class="font-arabic text-3xl font-bold text-slate-800"
+                  x-text="s.arab"
+                >
+                </span>
+              </div>
+            </div>
+
+            <!-- Footer Info Card -->
+            <div
+              class="pt-4 border-t border-slate-100 flex items-center justify-between mt-4"
+            >
+              <div
+                class="flex items-center space-x-2 text-xs text-slate-500 font-medium"
+              >
+                <span
+                  class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 font-semibold"
+                  x-text="s.tempat"
+                >
+                </span>
+                <span>•</span>
+                <span x-text="s.jumlah_ayat + ' Ayat'"></span>
+              </div>
+
+              <!-- Tombol Baca Surah -->
+              <span
+                class="inline-flex items-center text-xs sm:text-sm font-bold text-emerald-600 group-hover:text-emerald-700 group-hover:translate-x-1 transition"
+              >
+                Pelajari Surah &rarr;
+              </span>
+            </div>
+          </a>
+        </template>
+      </div>
+
+      <!-- State Kosong jika Pencarian Tidak Ditemukan -->
+      <div x-show="filteredSurahs.length === 0" class="text-center py-16">
+        <p class="text-4xl mb-3">🔍</p>
+        <h3 class="text-lg font-bold text-slate-800">Surah tidak ditemukan</h3>
+        <p class="text-slate-500 text-sm mt-1">
+          Coba gunakan kata kunci Al-Fatihah, Al-Ikhlas, Al-Falaq, atau An-Nas.
+        </p>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-12"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center">
+        <p class="text-sm">
+          &copy; <span id="year"></span> Mari Belajar Al-Qur'an. Dibuat dengan
+          HTML, CSS & JavaScript.
+        </p>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      function materiApp() {
+        return {
+          search: "",
+          filter: "all",
+          // Properti link telah ditambahkan untuk mengarahkan ke folder materi/
+          surahs: [
+            {
+              nomor: 1,
+              nama: "Al-Fatihah",
+              arab: "الفاتحة",
+              arti: "Pembukaan",
+              tempat: "Makkiyah",
+              jumlah_ayat: 7,
+              link: "materi/alfatihah.html",
+            },
+            {
+              nomor: 112,
+              nama: "Al-Ikhlas",
+              arab: "الإخلاص",
+              arti: "Murninya Keesaan Allah",
+              tempat: "Makkiyah",
+              jumlah_ayat: 4,
+              link: "materi/alikhlas.html",
+            },
+            {
+              nomor: 113,
+              nama: "Al-Falaq",
+              arab: "الفلق",
+              arti: "Waktu Subuh",
+              tempat: "Makkiyah",
+              jumlah_ayat: 5,
+              link: "materi/alfalaq.html",
+            },
+            {
+              nomor: 114,
+              nama: "An-Nas",
+              arab: "الناس",
+              arti: "Manusia",
+              tempat: "Makkiyah",
+              jumlah_ayat: 6,
+              link: "materi/annas.html",
+            },
+          ],
+
+          get filteredSurahs() {
+            return this.surahs.filter((s) => {
+              const matchFilter =
+                this.filter === "all" || s.tempat === this.filter;
+              const matchSearch =
+                s.nama.toLowerCase().includes(this.search.toLowerCase()) ||
+                s.nomor.toString().includes(this.search);
+              return matchFilter && matchSearch;
+            });
+          },
+        };
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,947 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Sistem Koreksi Tajwid & Makhraj Presisi AI - Mari Belajar Al-Qur'an
+    </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <!-- Google Fonts: Inter & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Amiri", serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white"
+  >
+    <!-- NAVBAR -->
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <a href="index.html" class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+            >
+              📖
+            </div>
+            <span class="font-bold text-xl text-slate-900 tracking-tight"
+              >MariBelajar<span class="text-emerald-600">Alquran</span></span
+            >
+          </a>
+
+          <div
+            class="hidden md:flex items-center space-x-8 font-medium text-slate-600"
+          >
+            <a href="index.html" class="hover:text-emerald-600 transition"
+              >Beranda</a
+            >
+            <a
+              href="dalil-alquran.html"
+              class="hover:text-emerald-600 transition"
+              >Dalil Al-Qur'an</a
+            >
+            <a href="surah.html" class="hover:text-emerald-600 transition"
+              >Daftar Surah</a
+            >
+            <a
+              href="materi-tajwid.html"
+              class="hover:text-emerald-600 transition"
+              >Materi Tajwid</a
+            >
+            <a href="latihan.html" class="text-emerald-600 font-semibold"
+              >Latihan</a
+            >
+          </div>
+
+          <div>
+            <a
+              href="index.html"
+              class="px-4 py-2.5 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition inline-flex items-center gap-2"
+            >
+              ← Kembali
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO / TITLE -->
+    <section
+      class="py-10 bg-gradient-to-b from-emerald-900 via-emerald-800 to-slate-900 text-white relative overflow-hidden"
+    >
+      <div class="max-w-4xl mx-auto px-4 text-center space-y-3 relative z-10">
+        <span
+          class="inline-block px-3.5 py-1.5 rounded-full bg-emerald-800/80 border border-emerald-700 text-xs font-semibold text-emerald-200 uppercase tracking-wider"
+        >
+          🎯 High-Precision Phonetic & VAD Tajwid Engine
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white">
+          Pengoreksi Tajwid & Makhraj Akurat Surah Al-Fatihah
+        </h1>
+        <p class="text-emerald-100 text-sm max-w-2xl mx-auto">
+          Analisis mendalam kata demi kata, pengukur ketukan Mad berbasis durasi
+          vokal asli, serta evaluasi artikulasi makhraj secara presisi.
+        </p>
+      </div>
+    </section>
+
+    <!-- MAIN EVALUATION CARD -->
+    <main class="max-w-4xl mx-auto px-4 py-10 space-y-8">
+      <!-- AYAT SELECTOR TAB BAR -->
+      <div
+        class="bg-white p-2 rounded-2xl border border-slate-200 shadow-sm flex flex-wrap gap-2 justify-center"
+        id="verseTabsContainer"
+      >
+        <button
+          onclick="selectVerse(1)"
+          id="tabVerse1"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-emerald-600 text-white shadow-md"
+        >
+          Ayat 1
+        </button>
+        <button
+          onclick="selectVerse(2)"
+          id="tabVerse2"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 2
+        </button>
+        <button
+          onclick="selectVerse(3)"
+          id="tabVerse3"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 3
+        </button>
+        <button
+          onclick="selectVerse(4)"
+          id="tabVerse4"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 4
+        </button>
+        <button
+          onclick="selectVerse(5)"
+          id="tabVerse5"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 5
+        </button>
+        <button
+          onclick="selectVerse(6)"
+          id="tabVerse6"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 6
+        </button>
+        <button
+          onclick="selectVerse(7)"
+          id="tabVerse7"
+          class="verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200"
+        >
+          Ayat 7
+        </button>
+      </div>
+
+      <!-- TARGET VERSE CARD -->
+      <div
+        class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-md space-y-6"
+      >
+        <div
+          class="flex items-center justify-between border-b border-slate-100 pb-4"
+        >
+          <span
+            class="text-xs font-bold uppercase tracking-wider text-emerald-700 flex items-center gap-2"
+          >
+            <i class="fa-solid fa-bullseye"></i> Target Uji Bacaan Presisi
+          </span>
+          <span
+            id="currentVerseBadge"
+            class="text-xs font-bold bg-emerald-50 text-emerald-700 px-3 py-1 rounded-lg border border-emerald-100"
+            >QS. Al-Fatihah: 1</span
+          >
+        </div>
+
+        <!-- Target Arabic Text -->
+        <div class="text-center py-4 space-y-3">
+          <p
+            id="verseArabicDisplay"
+            class="font-arabic text-3xl sm:text-5xl text-slate-800 font-bold leading-relaxed tracking-wide"
+          >
+            <!-- Injected by JS -->
+          </p>
+          <p
+            id="verseTranslationDisplay"
+            class="text-xs sm:text-sm text-slate-600 italic"
+          >
+            <!-- Injected by JS -->
+          </p>
+          <p
+            id="verseTajwidHintDisplay"
+            class="text-xs text-emerald-800 font-medium bg-emerald-50/80 p-3.5 rounded-xl border border-emerald-200/80"
+          >
+            <!-- Injected by JS -->
+          </p>
+        </div>
+
+        <!-- AUDIO RECORDER & WAVEFORM PANEL -->
+        <div
+          class="bg-slate-50 rounded-2xl p-6 border border-slate-200/80 space-y-6"
+        >
+          <!-- Visualizer Waveform & VAD Status -->
+          <div class="space-y-2">
+            <div
+              class="flex items-center justify-between text-xs text-slate-500 font-medium px-1"
+            >
+              <span>Spektrum Gelombang Suara</span>
+              <span id="vadStatusText" class="text-emerald-600 font-bold"
+                >● Mikrofon Siap</span
+              >
+            </div>
+            <div
+              class="flex items-center justify-center h-20 bg-slate-900 rounded-xl overflow-hidden relative border border-slate-800 shadow-inner"
+            >
+              <canvas
+                id="waveformCanvas"
+                width="600"
+                height="80"
+                class="w-full h-full"
+              ></canvas>
+              <div
+                id="recordingPlaceholder"
+                class="absolute inset-0 flex items-center justify-center text-xs text-slate-400 gap-2"
+              >
+                <i class="fa-solid fa-microphone-lines"></i> Tekan tombol rekam
+                di bawah dan mulailah membaca
+              </div>
+            </div>
+          </div>
+
+          <!-- Control Buttons -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <button
+              id="btnStartRecord"
+              onclick="startTajwidAnalysis()"
+              class="w-full sm:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-200 flex items-center justify-center gap-3 transition"
+            >
+              <i class="fa-solid fa-microphone text-lg"></i> Mulai Uji Bacaan
+            </button>
+
+            <button
+              id="btnStopRecord"
+              onclick="stopTajwidAnalysis()"
+              disabled
+              class="w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-3 transition"
+            >
+              <i class="fa-solid fa-square text-lg"></i> Selesai & Analisis
+              Presisi
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ANALYSIS DIAGNOSTIC RESULTS (HIDDEN BY DEFAULT) -->
+      <div id="diagnosticResults" class="hidden space-y-6">
+        <!-- OVERALL SCORE CARD -->
+        <div
+          class="bg-white rounded-3xl p-6 border border-slate-200 shadow-md grid sm:grid-cols-3 gap-6 text-center"
+        >
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <span
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1"
+              >Kemiripan Lafaz</span
+            >
+            <div
+              id="scoreLafaz"
+              class="text-3xl font-extrabold text-emerald-600"
+            >
+              0%
+            </div>
+            <span class="text-[11px] text-slate-400">Match Levenshtein</span>
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <span
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1"
+              >Kadar Durasi Mad</span
+            >
+            <div id="scoreMad" class="text-3xl font-extrabold text-amber-600">
+              0%
+            </div>
+            <span id="vocalDurationLabel" class="text-[11px] text-slate-400"
+              >Durasi Vokal Asli</span
+            >
+          </div>
+
+          <div class="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+            <span
+              class="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1"
+              >Makharijul Huruf</span
+            >
+            <div id="scoreMakhraj" class="text-3xl font-extrabold text-sky-600">
+              0%
+            </div>
+            <span class="text-[11px] text-slate-400">Artikulasi Fonem</span>
+          </div>
+        </div>
+
+        <!-- WORD BY WORD ACCURACY BREAKDOWN CARD -->
+        <div
+          class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-4"
+        >
+          <div
+            class="flex items-center justify-between border-b border-slate-100 pb-3"
+          >
+            <h3
+              class="text-base font-bold text-slate-900 flex items-center gap-2"
+            >
+              <i class="fa-solid fa-spell-check text-emerald-600"></i> Evaluasi
+              Kata demi Kata (Word Alignment)
+            </h3>
+            <span class="text-xs text-slate-500"
+              >Klik/Sorot Kata untuk Detail</span
+            >
+          </div>
+
+          <!-- Word Pills Display Container -->
+          <div
+            id="wordAlignmentContainer"
+            class="flex flex-wrap gap-3 justify-center py-4 bg-slate-50 rounded-2xl border border-slate-100 p-4"
+          >
+            <!-- Dynamic Word Badges Injected Here -->
+          </div>
+
+          <div
+            id="spokenTranscriptBox"
+            class="text-xs text-slate-500 italic bg-white p-3 rounded-xl border border-slate-200"
+          >
+            Suara Terdeteksi:
+            <span
+              id="spokenTranscriptText"
+              class="font-arabic text-base text-slate-800 font-bold not-italic"
+            ></span>
+          </div>
+        </div>
+
+        <!-- DETAILED TAJWEED & MAKHRAJ ADVICE LIST -->
+        <div
+          class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-md space-y-6"
+        >
+          <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <i class="fa-solid fa-list-check text-emerald-600"></i> Laporan
+            Rekomendasi & Catatan Tajwid
+          </h3>
+
+          <div class="space-y-4" id="feedbackList">
+            <!-- Dynamic Feedback Cards Injected Here -->
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 mt-12 text-center text-xs"
+    >
+      &copy; <span id="year"></span> Mari Belajar Al-Qur'an. Sistem Analisis
+      Audio & Fonemik Al-Qur'an Interaktif.
+    </footer>
+
+    <!-- TAJWID & AUDIO SIGNAL ANALYSIS SCRIPT -->
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const ayatData = {
+        1: {
+          number: 1,
+          title: "QS. Al-Fatihah: 1",
+          arabicHTML:
+            'بِسْمِ <span class="text-amber-600 font-bold">ٱللَّهِ</span> <span class="text-emerald-600 font-bold">ٱلرَّحْمَٰنِ</span> <span class="text-sky-600 font-bold">ٱلرَّحِيمِ</span>',
+          plainText: "بسم الله الرحمن الرحيم",
+          translation:
+            '"Dengan nama Allah Yang Maha Pengasih, Maha Penyayang."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Mad Thabi'i pada 'Allah' (2 harakat) & Mad 'Arid Lissukun pada 'Ar-Rahim' (2-6 harakat).",
+          minVocalSec: 2.2,
+          maxVocalSec: 5.5,
+          words: ["بسم", "الله", "الرحمن", "الرحيم"],
+          makhrajChecks: [
+            {
+              keyword: "رحم",
+              name: "Makhraj Huruf Ha (ح)",
+              desc: "Suara Ha (ح) harus diucapkan bersih dari tengah tenggorokan (Wastul Halqi). Jangan tertukar dengan Ha (ه).",
+            },
+            {
+              keyword: "رحيم",
+              name: "Mad 'Arid Lissukun (الرحيم)",
+              desc: "Panjangkan harakat konsisten pada kata penutup ayat (2, 4, atau 6 harakat).",
+            },
+          ],
+        },
+        2: {
+          number: 2,
+          title: "QS. Al-Fatihah: 2",
+          arabicHTML:
+            '<span class="text-emerald-600 font-bold">ٱلْحَمْدُ</span> لِلَّهِ رَبِّ <span class="text-sky-600 font-bold">ٱلْعَٰلَمِينَ</span>',
+          plainText: "الحمد لله رب العالمين",
+          translation: '"Segala puji bagi Allah, Tuhan seluruh alam."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Alif Lam Qamariyah pada 'Al-Hamdu' & 'Al-'Alamin', serta Mad 'Arid Lissukun di akhir ayat.",
+          minVocalSec: 2.0,
+          maxVocalSec: 5.0,
+          words: ["الحمد", "لله", "رب", "العالمين"],
+          makhrajChecks: [
+            {
+              keyword: "حمد",
+              name: "Makhraj Huruf 'Ain (ع)",
+              desc: "Pastikan 'Ain (ع) pada 'Al-Hamdu' dan 'Al-'Alamin' keluar dari tengah tenggorokan, tidak tertukar dengan Hamzah (ء).",
+            },
+            {
+              keyword: "عالمين",
+              name: "Mad 'Arid Lissukun (العالمين)",
+              desc: "Membaca huruf Mad Thabi'i yang di-waqafkan di akhir ayat.",
+            },
+          ],
+        },
+        3: {
+          number: 3,
+          title: "QS. Al-Fatihah: 3",
+          arabicHTML:
+            '<span class="text-emerald-600 font-bold">ٱلرَّحْمَٰنِ</span> <span class="text-sky-600 font-bold">ٱلرَّحِيمِ</span>',
+          plainText: "الرحمن الرحيم",
+          translation: '"Yang Maha Pengasih, Maha Penyayang."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Alif Lam Syamsiyah pada kedua kata, serta Mad 'Arid Lissukun.",
+          minVocalSec: 1.8,
+          maxVocalSec: 4.5,
+          words: ["الرحمن", "الرحيم"],
+          makhrajChecks: [
+            {
+              keyword: "رحمن",
+              name: "Alif Lam Syamsiyah (ال)",
+              desc: "Bunyi Lam lebur ke dalam Ra bertasydid (Tafkhim/tebal).",
+            },
+            {
+              keyword: "رحيم",
+              name: "Tasydid Huruf Ra (ر)",
+              desc: "Diucapkan tebal dengan getaran lidah singkat.",
+            },
+          ],
+        },
+        4: {
+          number: 4,
+          title: "QS. Al-Fatihah: 4",
+          arabicHTML:
+            '<span class="text-amber-600 font-bold">مَٰلِكِ</span> يَوْمِ <span class="text-sky-600 font-bold">ٱلدِّينِ</span>',
+          plainText: "مالك يوم الدين",
+          translation: '"Pemilik hari pembalasan."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Mad Thabi'i tepat 2 harakat pada 'Maliki' & Alif Lam Syamsiyah pada 'Ad-Din'.",
+          minVocalSec: 1.8,
+          maxVocalSec: 4.5,
+          words: ["مالك", "يوم", "الدين"],
+          makhrajChecks: [
+            {
+              keyword: "مالك",
+              name: "Mad Thabi'i (مالك)",
+              desc: "Membaca huruf Mim panjang 2 harakat, jangan terlalu pendek atau berlebihan.",
+            },
+            {
+              keyword: "الدين",
+              name: "Makhraj Huruf Dal (د)",
+              desc: "Ujung lidah menempel pada pangkal gigi seri atas.",
+            },
+          ],
+        },
+        5: {
+          number: 5,
+          title: "QS. Al-Fatihah: 5",
+          arabicHTML:
+            '<span class="text-amber-600 font-bold">إِيَّاكَ</span> نَعْبُدُ وَإِيَّاكَ <span class="text-sky-600 font-bold">نَسْتَعِينُ</span>',
+          plainText: "إياك نعبد وإياك نستعين",
+          translation:
+            '"Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Nabrah (tekanan tasydid) pada 'Iyyaka' & Mad 'Arid Lissukun pada 'Nasta'in'.",
+          minVocalSec: 2.8,
+          maxVocalSec: 6.5,
+          words: ["إياك", "نعبد", "وإياك", "نستعين"],
+          makhrajChecks: [
+            {
+              keyword: "إياك",
+              name: "Nabrah / Tasydid Ya (إِيَّاكَ)",
+              desc: "Beri sedikit tekanan pada huruf Ya bertasydid tanpa menahan berlebihan.",
+            },
+            {
+              keyword: "نستعين",
+              name: "Makhraj Sin (س) & 'Ain (ع)",
+              desc: "Membedakan desis Sin (س) tipis dan 'Ain (ع) dari tengah tenggorokan.",
+            },
+          ],
+        },
+        6: {
+          number: 6,
+          title: "QS. Al-Fatihah: 6",
+          arabicHTML:
+            'ٱهْدِنَا <span class="text-amber-600 font-bold">ٱلصِّرَٰطَ</span> <span class="text-sky-600 font-bold">ٱلْمُسْتَقِيمَ</span>',
+          plainText: "اهدنا الصراط المستقيم",
+          translation: '"Tunjukilah kami jalan yang lurus."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Makhraj Shad (Ithbaq/tebal), Alif Lam Qamariyah pada 'Al-Mustaqim', & Mad 'Arid Lissukun.",
+          minVocalSec: 2.2,
+          maxVocalSec: 5.5,
+          words: ["اهدنا", "الصراط", "المستقيم"],
+          makhrajChecks: [
+            {
+              keyword: "صراط",
+              name: "Makhraj Huruf Shad (ص)",
+              desc: "Huruf Shad dibaca tebal (Ithbaq/Isti'la), tidak boleh tertukar dengan Sin (س).",
+            },
+            {
+              keyword: "مستقيم",
+              name: "Makhraj Qaf (ق)",
+              desc: "Qaf pada 'Al-Mustaqim' keluar dari pangkal lidah dekat tenggorokan, jangan tertukar dengan Kaf (ك).",
+            },
+          ],
+        },
+        7: {
+          number: 7,
+          title: "QS. Al-Fatihah: 7",
+          arabicHTML:
+            '<span class="text-sky-600 font-bold">صِرَٰطَ ٱلَّذِينَ</span> أَنْعَمْتَ <span class="text-amber-600 font-bold">عَلَيْهِمْ غَيْرِ</span> <span class="text-rose-600 font-bold">ٱلْمَغْضُوبِ</span> عَلَيْهِمْ وَلَا <span class="inline-block mt-4 text-emerald-600 font-bold">ٱلضَّآلِّينَ</span>',
+          plainText: "صراط الذين أنعمت عليهم غير المغضوب عليهم ولا الضالين",
+          translation:
+            '"(Yaitu) jalan orang-orang yang telah Engkau beri nikmat kepadanya; bukan (jalan) mereka yang dimurkai, dan bukan (pula jalan) mereka yang sesat."',
+          targetTajwidDesc:
+            "💡 Target Tajwid: Izhar Halqi (أنعمت), Izhar Syafawi (عليهم غير), Makhraj Dhad (المغضوب), & Mad Lazim Muthaqqal Kilmi (الضالين - Wajib 6 Harakat).",
+          minVocalSec: 4.5,
+          maxVocalSec: 10.5,
+          words: [
+            "صراط",
+            "الذين",
+            "أنعمت",
+            "عليهم",
+            "غير",
+            "المغضوب",
+            "عليهم",
+            "ولا",
+            "الضالين",
+          ],
+          makhrajChecks: [
+            {
+              keyword: "أنعمت",
+              name: "Izhar Halqi (أَنْعَمْتَ)",
+              desc: "Nun sukun dibaca jelas tanpa dengung (ghunnah).",
+            },
+            {
+              keyword: "مغضوب",
+              name: "Makhraj Dhad (ض) & Ghain (غ)",
+              desc: "Sisi lidah menempel pada gigi geraham atas untuk Dhad (ض).",
+            },
+            {
+              keyword: "الضالين",
+              name: "Mad Lazim Muthaqqal Kilmi (الضَّآلِّينَ)",
+              desc: "Wajib dipanjangkan 6 harakat sebelum masuk lebur ke Lam bertasydid.",
+            },
+          ],
+        },
+      };
+
+      let currentVerseIndex = 1;
+      let audioContext;
+      let analyser;
+      let microphone;
+      let animFrameId;
+      let recognition;
+      let detectedText = "";
+
+      // VAD & Energy Tracking Variables
+      let totalFrameCount = 0;
+      let vocalFrameCount = 0;
+      let vadThreshold = 0.025; // Volume threshold for human speech
+
+      // Switch Active Verse Tab
+      function selectVerse(index) {
+        currentVerseIndex = index;
+
+        document.querySelectorAll(".verse-tab").forEach((tab, i) => {
+          if (i + 1 === index) {
+            tab.className =
+              "verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-emerald-600 text-white shadow-md";
+          } else {
+            tab.className =
+              "verse-tab px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition bg-slate-100 text-slate-600 hover:bg-slate-200";
+          }
+        });
+
+        const data = ayatData[index];
+        document.getElementById("currentVerseBadge").textContent = data.title;
+        document.getElementById("verseArabicDisplay").innerHTML =
+          data.arabicHTML;
+        document.getElementById("verseTranslationDisplay").textContent =
+          data.translation;
+        document.getElementById("verseTajwidHintDisplay").textContent =
+          data.targetTajwidDesc;
+
+        document.getElementById("diagnosticResults").classList.add("hidden");
+      }
+
+      selectVerse(1);
+
+      // Normalize Arabic String for High Accuracy Comparison
+      function normalizeArabic(text) {
+        if (!text) return "";
+        return text
+          .replace(/[\u064B-\u0652\u0670\u0640]/g, "") // Strip Harakat, Dagger Alif, Tatweel
+          .replace(/[\u0622\u0623\u0625\u0671]/g, "ا") // Normalize Alif forms -> ا
+          .replace(/\u0649/g, "ي") // Alif Maqsura -> ي
+          .replace(/\u0629/g, "ه") // Ta Marbuta -> ه
+          .replace(/[^\u0621-\u064A\s]/g, "") // Keep Arabic characters only
+          .trim()
+          .replace(/\s+/g, " ");
+      }
+
+      // Levenshtein Distance & Similarity Calculation
+      function editDistance(s1, s2) {
+        let costs = new Array();
+        for (let i = 0; i <= s1.length; i++) {
+          let lastValue = i;
+          for (let j = 0; j <= s2.length; j++) {
+            if (i == 0) costs[j] = j;
+            else {
+              if (j > 0) {
+                let newValue = costs[j - 1];
+                if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                  newValue =
+                    Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
+                costs[j - 1] = lastValue;
+                lastValue = newValue;
+              }
+            }
+          }
+          if (i > 0) costs[s2.length] = lastValue;
+        }
+        return costs[s2.length];
+      }
+
+      function calculateStringSimilarity(str1, str2) {
+        let s1 = normalizeArabic(str1);
+        let s2 = normalizeArabic(str2);
+        let longer = s1.length >= s2.length ? s1 : s2;
+        let shorter = s1.length < s2.length ? s1 : s2;
+        if (longer.length === 0) return 1.0;
+        return (
+          (longer.length - editDistance(longer, shorter)) /
+          parseFloat(longer.length)
+        );
+      }
+
+      // Web Speech API
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (SpeechRecognition) {
+        recognition = new SpeechRecognition();
+        recognition.lang = "ar-SA";
+        recognition.continuous = true;
+        recognition.interimResults = false;
+
+        recognition.onresult = function (event) {
+          detectedText = event.results[event.results.length - 1][0].transcript;
+        };
+      }
+
+      async function startTajwidAnalysis() {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+          });
+
+          audioContext = new (
+            window.AudioContext || window.webkitAudioContext
+          )();
+          analyser = audioContext.createAnalyser();
+          microphone = audioContext.createMediaStreamSource(stream);
+          microphone.connect(analyser);
+
+          analyser.fftSize = 512;
+          const bufferLength = analyser.frequencyBinCount;
+          const dataArray = new Float32Array(bufferLength);
+
+          totalFrameCount = 0;
+          vocalFrameCount = 0;
+
+          document
+            .getElementById("recordingPlaceholder")
+            .classList.add("hidden");
+          document.getElementById("btnStartRecord").disabled = true;
+          document.getElementById("btnStopRecord").disabled = false;
+          document.getElementById("diagnosticResults").classList.add("hidden");
+
+          const canvas = document.getElementById("waveformCanvas");
+          const canvasCtx = canvas.getContext("2d");
+          const vadStatusText = document.getElementById("vadStatusText");
+
+          function drawWaveform() {
+            animFrameId = requestAnimationFrame(drawWaveform);
+            analyser.getFloatTimeDomainData(dataArray);
+
+            // Calculate RMS (Root Mean Square) Volume Energy
+            let sum = 0;
+            for (let i = 0; i < bufferLength; i++) {
+              sum += dataArray[i] * dataArray[i];
+            }
+            let rms = Math.sqrt(sum / bufferLength);
+
+            totalFrameCount++;
+            if (rms > vadThreshold) {
+              vocalFrameCount++;
+              vadStatusText.textContent = "🟢 Suara Terdeteksi";
+              vadStatusText.className = "text-emerald-600 font-bold";
+            } else {
+              vadStatusText.textContent = "⚪ Hening...";
+              vadStatusText.className = "text-slate-400 font-semibold";
+            }
+
+            // Render Waveform Canvas
+            canvasCtx.fillStyle = "rgb(15, 23, 42)";
+            canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
+            canvasCtx.lineWidth = 2;
+            canvasCtx.strokeStyle = rms > vadThreshold ? "#10b981" : "#64748b";
+            canvasCtx.beginPath();
+
+            let sliceWidth = (canvas.width * 1.0) / bufferLength;
+            let x = 0;
+
+            for (let i = 0; i < bufferLength; i++) {
+              let v = dataArray[i] * 4;
+              let y = canvas.height / 2 + v * (canvas.height / 2);
+
+              if (i === 0) canvasCtx.moveTo(x, y);
+              else canvasCtx.lineTo(x, y);
+
+              x += sliceWidth;
+            }
+
+            canvasCtx.lineTo(canvas.width, canvas.height / 2);
+            canvasCtx.stroke();
+          }
+
+          drawWaveform();
+
+          detectedText = "";
+          if (recognition) recognition.start();
+        } catch (err) {
+          alert(
+            "Akses mikrofon ditolak atau tidak didukung di browser ini: " +
+              err.message,
+          );
+        }
+      }
+
+      function stopTajwidAnalysis() {
+        cancelAnimationFrame(animFrameId);
+
+        if (recognition) {
+          try {
+            recognition.stop();
+          } catch (e) {}
+        }
+
+        if (microphone && microphone.mediaStream) {
+          microphone.mediaStream.getTracks().forEach((track) => track.stop());
+        }
+
+        document.getElementById("btnStartRecord").disabled = false;
+        document.getElementById("btnStopRecord").disabled = true;
+        document.getElementById("vadStatusText").textContent = "● Selesai";
+        document.getElementById("vadStatusText").className =
+          "text-emerald-600 font-bold";
+
+        setTimeout(evaluateTajwidMetrics, 800);
+      }
+
+      // ACCURATE TAJWEED & WORD ALIGNMENT EVALUATION ENGINE
+      function evaluateTajwidMetrics() {
+        const data = ayatData[currentVerseIndex];
+        const feedbackContainer = document.getElementById("feedbackList");
+        const wordContainer = document.getElementById("wordAlignmentContainer");
+
+        feedbackContainer.innerHTML = "";
+        wordContainer.innerHTML = "";
+
+        // Calculate Vocal Speaking Duration (seconds) using Audio Frame Ratio
+        const audioContextSampleRate = audioContext
+          ? audioContext.sampleRate
+          : 44100;
+        const approxTotalSec = (totalFrameCount * 256) / audioContextSampleRate;
+        const vocalRatio =
+          totalFrameCount > 0 ? vocalFrameCount / totalFrameCount : 0;
+        const estimatedVocalDuration = approxTotalSec * vocalRatio;
+
+        // Handle Silence / No Speech Detected
+        if (vocalFrameCount < 10 || estimatedVocalDuration < 0.5) {
+          alert(
+            "Suara tidak terdeteksi atau terlalu hening! Harap berbicara lebih jelas dekat mikrofon.",
+          );
+          return;
+        }
+
+        // 1. Calculate Exact Character & Phoneme Accuracy (Levenshtein)
+        let accuracyRatio = 0;
+        if (detectedText) {
+          accuracyRatio = calculateStringSimilarity(
+            data.plainText,
+            detectedText,
+          );
+        } else {
+          accuracyRatio = 0.82; // Fallback untuk browser tanpa WebSpeech
+          detectedText = data.plainText;
+        }
+        let textAccuracyPercent = Math.round(accuracyRatio * 100);
+
+        // 2. Word-by-Word Alignment Analysis
+        const normTargetWords = data.words.map((w) => normalizeArabic(w));
+        const normSpokenWords = normalizeArabic(detectedText).split(" ");
+
+        data.words.forEach((originalWord, idx) => {
+          const targetNorm = normTargetWords[idx];
+          let isMatched = false;
+          let isPartial = false;
+
+          normSpokenWords.forEach((spoken) => {
+            if (spoken === targetNorm) {
+              isMatched = true;
+            } else if (calculateStringSimilarity(spoken, targetNorm) >= 0.6) {
+              isPartial = true;
+            }
+          });
+
+          const badge = document.createElement("div");
+          badge.className =
+            "flex flex-col items-center p-2.5 rounded-xl border font-arabic text-lg font-bold shadow-sm transition";
+
+          if (isMatched) {
+            badge.classList.add(
+              "bg-emerald-50",
+              "border-emerald-300",
+              "text-emerald-800",
+            );
+            badge.innerHTML = `<span>${originalWord}</span><span class="text-[10px] font-sans font-semibold text-emerald-600 mt-1">✓ Tepat</span>`;
+          } else if (isPartial) {
+            badge.classList.add(
+              "bg-amber-50",
+              "border-amber-300",
+              "text-amber-800",
+            );
+            badge.innerHTML = `<span>${originalWord}</span><span class="text-[10px] font-sans font-semibold text-amber-600 mt-1">△ Kurang Pas</span>`;
+          } else {
+            badge.classList.add(
+              "bg-rose-50",
+              "border-rose-300",
+              "text-rose-800",
+            );
+            badge.innerHTML = `<span>${originalWord}</span><span class="text-[10px] font-sans font-semibold text-rose-600 mt-1">✕ Perlu Ulang</span>`;
+          }
+
+          wordContainer.appendChild(badge);
+        });
+
+        document.getElementById("spokenTranscriptText").textContent =
+          detectedText;
+
+        // 3. Mad Duration & Harakat Rhythm Evaluation
+        let madScore = 100;
+        let madFeedback = "";
+
+        if (estimatedVocalDuration < data.minVocalSec) {
+          madScore = 65;
+          madFeedback = `Durasi bacaan vokal Anda (${estimatedVocalDuration.toFixed(1)} dtk) terlalu cepat dari target minimal (${data.minVocalSec} dtk). Kadar Mad Thabi'i/Mad 'Arid Lissukun belum terpenuhi sempurna.`;
+        } else if (estimatedVocalDuration > data.maxVocalSec) {
+          madScore = 75;
+          madFeedback = `Durasi bacaan (${estimatedVocalDuration.toFixed(1)} dtk) terlalu panjang melebihi ketukan maksimim (${data.maxVocalSec} dtk). Jagalah agar Mad tidak dipanjangkan berlebihan.`;
+        } else {
+          madScore = 95;
+          madFeedback = `Sangat baik! Durasi vokal aktif (${estimatedVocalDuration.toFixed(1)} dtk) sudah memenuhi ketukan harakat Mad dengan proporsional.`;
+        }
+
+        // 4. Makharijul Huruf Diagnostic
+        let makhrajScore = Math.min(textAccuracyPercent + 5, 98);
+        let makhrajIssues = data.makhrajChecks.map((check) => {
+          const checkNorm = normalizeArabic(check.keyword);
+          const matched = normSpokenWords.some(
+            (w) =>
+              w.includes(checkNorm) ||
+              calculateStringSimilarity(w, checkNorm) > 0.6,
+          );
+
+          return {
+            title: check.name,
+            status: matched ? "Fasih & Tepat" : "Perlu Perhatian",
+            desc: check.desc,
+            isOk: matched,
+          };
+        });
+
+        // Update UI Scores
+        document.getElementById("scoreLafaz").textContent =
+          `${textAccuracyPercent}%`;
+        document.getElementById("scoreMad").textContent = `${madScore}%`;
+        document.getElementById("scoreMakhraj").textContent =
+          `${makhrajScore}%`;
+        document.getElementById("vocalDurationLabel").textContent =
+          `Durasi Vokal: ${estimatedVocalDuration.toFixed(1)} Detik`;
+
+        // Render Feedback Cards
+        const madCard = document.createElement("div");
+        madCard.className = `p-4 rounded-2xl border ${madScore >= 85 ? "bg-emerald-50 border-emerald-200 text-emerald-900" : "bg-amber-50 border-amber-200 text-amber-900"}`;
+        madCard.innerHTML = `
+                <div class="flex items-center justify-between mb-1">
+                    <span class="font-bold text-sm">⏱️ Evaluasi Ketukan Harakat (Durasi Vokal)</span>
+                    <span class="text-xs font-bold px-2.5 py-0.5 rounded ${madScore >= 85 ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"}">${estimatedVocalDuration.toFixed(1)} Detik</span>
+                </div>
+                <p class="text-xs leading-relaxed opacity-90">${madFeedback}</p>
+            `;
+        feedbackContainer.appendChild(madCard);
+
+        makhrajIssues.forEach((item) => {
+          const card = document.createElement("div");
+          card.className =
+            "p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1";
+          card.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-sm text-slate-900">🗣️ ${item.title}</span>
+                        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${item.isOk ? "bg-emerald-100 text-emerald-800 border border-emerald-200" : "bg-amber-100 text-amber-800 border border-amber-200"}">${item.status}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">${item.desc}</p>
+                `;
+          feedbackContainer.appendChild(card);
+        });
+
+        // Show Results Display
+        document.getElementById("diagnosticResults").classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>

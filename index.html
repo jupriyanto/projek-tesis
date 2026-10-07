@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Mari Belajar Al-Qur'an - Platform Edukasi Al-Qur'an Interaktif
+    </title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Amiri (Aksara Arab) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .font-arabic {
+        font-family: "Amiri", serif;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white"
+  >
+    <!-- NAVBAR -->
+    <nav
+      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+            >
+              📖
+            </div>
+            <span class="font-bold text-xl text-slate-900 tracking-tight"
+              >Mari Belajar <span class="text-emerald-600">Alquran</span></span
+            >
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section
+      id="beranda"
+      class="relative pt-12 pb-20 lg:pt-20 lg:pb-28 overflow-hidden"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Hero Text -->
+          <div class="space-y-6 text-center lg:text-left">
+            <div
+              class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-200/60 rounded-full px-4 py-1.5 text-xs sm:text-sm font-medium text-emerald-700"
+            >
+              <span>✨ Platform Edukasi Al-Qur'an Digital</span>
+            </div>
+            <h1
+              class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight"
+            >
+              Kemudahan Belajar
+              <span class="text-emerald-600">Al-Qur'an</span> Dalam Genggaman
+            </h1>
+            <p
+              class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto lg:mx-0"
+            >
+              Tingkatkan pemahaman bacaan, tajwid, dan makna Al-Qur'an dengan
+              metode interaktif yang mudah dipahami untuk semua kalangan.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4"
+            >
+              <a
+                href="dalil-alquran.html"
+                class="w-full sm:w-auto text-center px-8 py-4 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold rounded-xl shadow-lg shadow-emerald-200 transition"
+              >
+                Mulai Belajar Sekarang
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Card / Illustration -->
+          <div class="relative flex justify-center">
+            <div
+              class="w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl border border-slate-100 relative"
+            >
+              <!-- AYAT HARI INI (DINAMIS DARI JAVASCRIPT) -->
+              <div
+                class="bg-emerald-800 text-white p-6 rounded-2xl mb-4 relative overflow-hidden"
+              >
+                <div
+                  class="absolute -right-4 -bottom-4 text-emerald-700/30 text-8xl font-arabic font-bold"
+                >
+                  ﷽
+                </div>
+                <span
+                  class="text-xs uppercase tracking-widest text-emerald-200 font-semibold block"
+                  >Ayat Hari Ini</span
+                >
+                <p
+                  id="ayatArab"
+                  class="font-arabic text-right text-2xl sm:text-3xl my-4 leading-loose font-bold"
+                >
+                  <!-- Teks Arab Diisi oleh JS -->
+                </p>
+                <p
+                  id="ayatTerjemahan"
+                  class="text-xs sm:text-sm text-emerald-100 italic"
+                >
+                  <!-- Terjemahan & Surah Diisi oleh JS -->
+                </p>
+              </div>
+
+              <!-- Quick Stats -->
+              <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="p-3 bg-slate-50 rounded-xl">
+                  <p class="font-bold text-lg text-emerald-600">30</p>
+                  <p class="text-xs text-slate-500">Juz</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl">
+                  <p class="font-bold text-lg text-emerald-600">114</p>
+                  <p class="text-xs text-slate-500">Surah</p>
+                </div>
+                <div class="p-3 bg-slate-50 rounded-xl">
+                  <p class="font-bold text-lg text-emerald-600">6.236</p>
+                  <p class="text-xs text-slate-500">Ayat</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript Logika Ayat Berganti Setiap Hari -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Koleksi Ayat Pilihan untuk Ayat Hari Ini
+        const daftarAyat = [
+          {
+            arab: "ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ",
+            terjemahan:
+              '"Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan."',
+            surah: "QS. Al-'Alaq: 1",
+          },
+          {
+            arab: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+            terjemahan:
+              '"Hanya kepada Engkaulah kami menyembah dan hanya kepada Engkaulah kami memohon pertolongan."',
+            surah: "QS. Al-Fatihah: 5",
+          },
+          {
+            arab: "قُلْ هُوَ ٱللَّهُ أَحَدٌ",
+            terjemahan: '"Katakanlah (Muhammad), Dialah Allah, Yang Maha Esa."',
+            surah: "QS. Al-Ikhlas: 1",
+          },
+          {
+            arab: "فَإِنَّ مَعَ ٱلْعُسْرِ يُسْرًا",
+            terjemahan: '"Maka sesungguhnya bersama kesulitan ada kemudahan."',
+            surah: "QS. Al-Insyirah: 5",
+          },
+          {
+            arab: "وَٱصْبِرْ فَإِنَّ ٱللَّهَ لَا يُضِيعُ أَجْرَ ٱلْمُحْسِنِينَ",
+            terjemahan:
+              '"Dan bersabarlah, karena sesungguhnya Allah tidak menyia-nyiakan pahala orang yang berbuat kebaikan."',
+            surah: "QS. Hud: 115",
+          },
+          {
+            arab: "رَبِّ زِدْنِى عِلْمًا",
+            terjemahan: '"Ya Tuhanku, tambahkanlah ilmu kepadaku."',
+            surah: "QS. Taha: 114",
+          },
+          {
+            arab: "أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُوبُ",
+            terjemahan:
+              '"Ingatlah, hanya dengan mengingat Allah hati menjadi tenteram."',
+            surah: "QS. Ar-Ra'd: 28",
+          },
+          {
+            arab: "وَقُل رَّبِّ ٱرْحَمْهُمَا كَمَا رَبَّيَانِى صَغِيرًا",
+            terjemahan:
+              '"Dan katakanlah, Wahai Tuhanku! Sayangilah keduanya sebagaimana mereka berdua telah megaruhiku sewaktu kecil."',
+            surah: "QS. Al-Isra': 24",
+          },
+          {
+            arab: "وَمَن يَتَّقِ ٱللَّهَ يَجْعَل لَّهُۥ مَخْرَجًا",
+            terjemahan:
+              '"Barangsiapa bertakwa kepada Allah niscaya Dia akan membukakan jalan keluar baginya."',
+            surah: "QS. At-Talaq: 2",
+          },
+          {
+            arab: "إِنَّ ٱللَّهَ مَعَ ٱلصَّٰبِرِينَ",
+            terjemahan: '"Sungguh, Allah beserta orang-orang yang sabar."',
+            surah: "QS. Al-Baqarah: 153",
+          },
+        ];
+
+        // Hitung jumlah hari sejak era Unix epoch (1 Januari 1970)
+        const sekarang = new Date();
+        const jumlahHari = Math.floor(
+          sekarang.getTime() / (1000 * 60 * 60 * 24),
+        );
+
+        // Pilih ayat berdasarkan indeks hari (sisa hasil bagi / modulo)
+        const indeksAyat = jumlahHari % daftarAyat.length;
+        const ayatHariIni = daftarAyat[indeksAyat];
+
+        // Tampilkan ke elemen HTML
+        document.getElementById("ayatArab").innerText = ayatHariIni.arab;
+        document.getElementById("ayatTerjemahan").innerText =
+          `${ayatHariIni.terjemahan} (${ayatHariIni.surah})`;
+
+        // Penanda Link Navigasi Aktif
+        const currentPath =
+          window.location.pathname.split("/").pop() || "index.html";
+        const navLinks = document.querySelectorAll("nav a");
+
+        navLinks.forEach((link) => {
+          const href = link.getAttribute("href");
+          if (href === currentPath) {
+            link.classList.add("text-emerald-600", "font-semibold");
+            link.classList.remove("text-slate-600");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
