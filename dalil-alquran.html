@@ -23,29 +23,31 @@
     </style>
   </head>
   <body
-    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white"
+    class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white pb-12 sm:pb-0"
   >
     <!-- NAVBAR -->
     <nav
-      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+      class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
+        <div class="flex justify-between items-center h-16 sm:h-20">
           <!-- Logo -->
-          <a href="index.html" class="flex items-center space-x-3">
+          <a href="index.html" class="flex items-center space-x-2 sm:space-x-3">
             <div
-              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+              class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md shadow-emerald-200 shrink-0"
             >
               📖
             </div>
-            <span class="font-bold text-xl text-slate-900 tracking-tight"
-              >Mari Belajar <span class="text-emerald-600">Alquran</span></span
+            <span
+              class="font-bold text-base sm:text-xl text-slate-900 tracking-tight"
             >
+              Mari Belajar <span class="text-emerald-600">Alquran</span>
+            </span>
           </a>
 
-          <!-- Navigation Links -->
+          <!-- Desktop Navigation Links -->
           <div
-            class="hidden md:flex items-center space-x-8 font-medium text-slate-600"
+            class="hidden md:flex items-center space-x-6 lg:space-x-8 font-medium text-slate-600 text-sm lg:text-base"
           >
             <a href="index.html" class="hover:text-emerald-600 transition"
               >Beranda</a
@@ -68,37 +70,116 @@
             >
           </div>
 
-          <!-- Back to Home Button -->
-          <div>
+          <!-- Desktop Back Button & Mobile Menu Toggle Button -->
+          <div class="flex items-center gap-2">
             <a
               href="index.html"
-              class="px-4 py-2.5 text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/60 rounded-xl transition inline-flex items-center gap-2"
+              class="hidden sm:inline-flex px-3.5 py-2 text-xs sm:text-sm font-semibold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/60 rounded-xl transition items-center gap-1.5"
             >
               ← Kembali
             </a>
+
+            <!-- Mobile Hamburger Button -->
+            <button
+              id="mobile-menu-btn"
+              type="button"
+              class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none"
+              aria-label="Toggle Navigation"
+            >
+              <svg
+                id="menu-icon"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                id="close-icon"
+                class="w-6 h-6 hidden"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Drawer -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2 font-medium text-slate-700 shadow-lg"
+      >
+        <a
+          href="index.html"
+          class="block px-3 py-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition"
+          >Beranda</a
+        >
+        <a
+          href="dalil-alquran.html"
+          class="block px-3 py-2 rounded-lg bg-emerald-50 text-emerald-600 font-semibold"
+          >Dalil Al-Qur'an</a
+        >
+        <a
+          href="surah.html"
+          class="block px-3 py-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition"
+          >Daftar Surah</a
+        >
+        <a
+          href="materi-tajwid.html"
+          class="block px-3 py-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition"
+          >Materi Tajwid</a
+        >
+        <a
+          href="latihan-tajwid.html"
+          class="block px-3 py-2 rounded-lg hover:bg-emerald-50 hover:text-emerald-600 transition"
+          >Latihan</a
+        >
+        <div class="pt-2 border-t border-slate-100">
+          <a
+            href="index.html"
+            class="block text-center px-4 py-2 text-sm font-semibold text-emerald-700 bg-emerald-50 rounded-xl border border-emerald-200"
+          >
+            ← Kembali ke Beranda
+          </a>
         </div>
       </div>
     </nav>
 
     <!-- HEADER / HERO -->
     <section
-      class="bg-emerald-900 text-white py-16 lg:py-20 relative overflow-hidden"
+      class="bg-emerald-900 text-white py-10 sm:py-16 lg:py-20 relative overflow-hidden"
     >
       <div
         class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"
       ></div>
       <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
         <span
-          class="inline-block px-4 py-1.5 bg-emerald-800/80 border border-emerald-700 rounded-full text-xs font-semibold tracking-wide text-emerald-200 mb-4 uppercase"
+          class="inline-block px-3 py-1 sm:px-4 sm:py-1.5 bg-emerald-800/80 border border-emerald-700 rounded-full text-[10px] sm:text-xs font-semibold tracking-wide text-emerald-200 mb-3 sm:mb-4 uppercase"
         >
           Khazanah & Tholabul 'Ilmi
         </span>
-        <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight">
+        <h1
+          class="text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight"
+        >
           Dalil-Dalil Mempelajari & Mengamalkan Al-Qur'an
         </h1>
         <p
-          class="mt-4 text-emerald-100 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
+          class="mt-3 sm:mt-4 text-emerald-100 text-xs sm:text-base lg:text-lg max-w-2xl mx-auto leading-relaxed"
         >
           Landasan firman Allah SWT dan sabda Rasulullah SAW tentang pentingnya
           menuntut ilmu Al-Qur'an sebagai pedoman hidup umat Islam.
@@ -107,61 +188,63 @@
     </section>
 
     <!-- MAIN CONTENT -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
+    <main
+      class="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 space-y-10 sm:space-y-16"
+    >
       <!-- SECTION 1: DALIL AL-QUR'AN -->
-      <section id="ayat" class="space-y-8">
-        <div
-          class="border-b border-slate-200 pb-4 flex items-center justify-between"
-        >
-          <div>
-            <h2
-              class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+      <section id="ayat" class="space-y-6 sm:space-y-8">
+        <div class="border-b border-slate-200 pb-3 sm:pb-4">
+          <h2
+            class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5 sm:gap-3"
+          >
+            <span
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs sm:text-sm font-bold shrink-0"
+              >1</span
             >
-              <span
-                class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold"
-                >1</span
-              >
-              Dalil Dari Ayat Al-Qur'an
-            </h2>
-            <p class="text-slate-500 text-sm mt-1">
-              Firman Allah SWT tentang perintah membaca, merenungkan, dan
-              menuntut ilmu Al-Qur'an.
-            </p>
-          </div>
+            Dalil Dari Ayat Al-Qur'an
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            Firman Allah SWT tentang perintah membaca, merenungkan, dan menuntut
+            ilmu Al-Qur'an.
+          </p>
         </div>
 
-        <div class="space-y-6">
+        <div class="space-y-4 sm:space-y-6">
           <!-- Card Ayat 1 -->
           <div
-            class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
+            class="bg-white rounded-2xl p-4 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
           >
             <div
-              class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3"
+              class="flex flex-wrap gap-2 justify-between items-center mb-4 sm:mb-6 border-b border-slate-100 pb-3"
             >
               <span
-                class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
+                class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
               >
                 QS. Al-'Alaq [96]: 1 - 5
               </span>
-              <span class="text-xs text-slate-400">Wahyu Pertama</span>
+              <span class="text-[11px] sm:text-xs text-slate-400"
+                >Wahyu Pertama</span
+              >
             </div>
 
             <p
-              class="font-arabic text-2xl sm:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-6"
+              class="font-arabic text-xl sm:text-2xl lg:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-4 sm:mb-6"
             >
               ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِى خَلَقَ ۝ خَلَقَ ٱلْإِنسَٰنَ مِنْ
               عَلَقٍ ۝ ٱقْرَأْ وَرَبُّكَ ٱلْأَكْرَمُ ۝ ٱلَّذِى عَلَّمَ
               بِٱلْقَلَمِ ۝ عَلَّمَ ٱلْإِنسَٰنَ مَا لَمْ يَعْلَمْ
             </p>
 
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <div
+              class="bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-100"
+            >
               <p
-                class="text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
+                class="text-[10px] sm:text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
               >
                 Terjemahan:
               </p>
               <p
-                class="text-slate-700 text-sm sm:text-base leading-relaxed italic"
+                class="text-slate-700 text-xs sm:text-base leading-relaxed italic"
               >
                 "Bacalah dengan (menyebut) nama Tuhanmu yang menciptakan. Dia
                 telah menciptakan manusia dari segumpal darah. Bacalah, dan
@@ -174,34 +257,38 @@
 
           <!-- Card Ayat 2 -->
           <div
-            class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
+            class="bg-white rounded-2xl p-4 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
           >
             <div
-              class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3"
+              class="flex flex-wrap gap-2 justify-between items-center mb-4 sm:mb-6 border-b border-slate-100 pb-3"
             >
               <span
-                class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
+                class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
               >
                 QS. Sad [38]: 29
               </span>
-              <span class="text-xs text-slate-400">Tadabbur Al-Qur'an</span>
+              <span class="text-[11px] sm:text-xs text-slate-400"
+                >Tadabbur Al-Qur'an</span
+              >
             </div>
 
             <p
-              class="font-arabic text-2xl sm:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-6"
+              class="font-arabic text-xl sm:text-2xl lg:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-4 sm:mb-6"
             >
               كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ مُبَٰرَكٌ لِّيَدَّبَّرُوٓا۟
               ءَايَٰتِهِۦ وَلِيَتَذَكَّرَ أُو۟لُوا۟ ٱلْأَلْبَٰبِ
             </p>
 
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <div
+              class="bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-100"
+            >
               <p
-                class="text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
+                class="text-[10px] sm:text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
               >
                 Terjemahan:
               </p>
               <p
-                class="text-slate-700 text-sm sm:text-base leading-relaxed italic"
+                class="text-slate-700 text-xs sm:text-base leading-relaxed italic"
               >
                 "Ini adalah sebuah kitab yang Kami turunkan kepadamu penuh
                 dengan berkah supaya mereka memperhatikan (merenungkan)
@@ -213,33 +300,37 @@
 
           <!-- Card Ayat 3 -->
           <div
-            class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
+            class="bg-white rounded-2xl p-4 sm:p-8 border border-slate-200/80 shadow-sm hover:shadow-md transition"
           >
             <div
-              class="flex justify-between items-center mb-6 border-b border-slate-100 pb-3"
+              class="flex flex-wrap gap-2 justify-between items-center mb-4 sm:mb-6 border-b border-slate-100 pb-3"
             >
               <span
-                class="px-3 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
+                class="px-2.5 py-1 bg-emerald-50 text-emerald-700 text-xs font-bold rounded-lg border border-emerald-100"
               >
                 QS. Al-Muzzammil [73]: 4
               </span>
-              <span class="text-xs text-slate-400">Membaca Tartil</span>
+              <span class="text-[11px] sm:text-xs text-slate-400"
+                >Membaca Tartil</span
+              >
             </div>
 
             <p
-              class="font-arabic text-2xl sm:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-6"
+              class="font-arabic text-xl sm:text-2xl lg:text-3xl text-right text-slate-800 leading-[2.2] sm:leading-[2.4] font-bold mb-4 sm:mb-6"
             >
               وَرَتِّلِ ٱلْقُرْءَانَ تَرْتِيلًا
             </p>
 
-            <div class="bg-slate-50 p-4 rounded-xl border border-slate-100">
+            <div
+              class="bg-slate-50 p-3.5 sm:p-4 rounded-xl border border-slate-100"
+            >
               <p
-                class="text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
+                class="text-[10px] sm:text-xs font-semibold text-emerald-800 uppercase tracking-wider mb-1"
               >
                 Terjemahan:
               </p>
               <p
-                class="text-slate-700 text-sm sm:text-base leading-relaxed italic"
+                class="text-slate-700 text-xs sm:text-base leading-relaxed italic"
               >
                 "...dan bacalah Al-Qur'an itu dengan perlahan-lahan (tartil)."
               </p>
@@ -249,54 +340,54 @@
       </section>
 
       <!-- SECTION 2: DALIL HADITS NABI -->
-      <section id="hadits" class="space-y-8">
-        <div
-          class="border-b border-slate-200 pb-4 flex items-center justify-between"
-        >
-          <div>
-            <h2
-              class="text-2xl font-bold text-slate-900 flex items-center gap-3"
+      <section id="hadits" class="space-y-6 sm:space-y-8">
+        <div class="border-b border-slate-200 pb-3 sm:pb-4">
+          <h2
+            class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2.5 sm:gap-3"
+          >
+            <span
+              class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs sm:text-sm font-bold shrink-0"
+              >2</span
             >
-              <span
-                class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm font-bold"
-                >2</span
-              >
-              Dalil Dari Hadits Rasulullah SAW
-            </h2>
-            <p class="text-slate-500 text-sm mt-1">
-              Pelajaran dan janji pahala dari Rasulullah SAW bagi pemelajar
-              Al-Qur'an.
-            </p>
-          </div>
+            Dalil Dari Hadits Rasulullah SAW
+          </h2>
+          <p class="text-slate-500 text-xs sm:text-sm mt-1">
+            Pelajaran dan janji pahala dari Rasulullah SAW bagi pemelajar
+            Al-Qur'an.
+          </p>
         </div>
 
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           <!-- Hadits 1 -->
           <div
-            class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between"
+            class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between"
           >
             <div>
-              <div class="flex items-center justify-between mb-4">
+              <div
+                class="flex flex-wrap gap-2 items-center justify-between mb-4"
+              >
                 <span
-                  class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
+                  class="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
                 >
                   HR. Bukhari
                 </span>
-                <span class="text-xs text-slate-400"
+                <span class="text-[11px] sm:text-xs text-slate-400"
                   >Sanad: Utsman bin Affan RA</span
                 >
               </div>
               <p
-                class="font-arabic text-xl text-right text-slate-800 leading-relaxed font-bold mb-4"
+                class="font-arabic text-lg sm:text-xl text-right text-slate-800 leading-relaxed font-bold mb-3 sm:mb-4"
               >
                 خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ
               </p>
-              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
                 <strong>Artinya:</strong> "Sebaik-baik kalian adalah orang yang
                 mempelajari Al-Qur'an dan mengajarkannya."
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <div
+              class="pt-3 border-t border-slate-100 text-[11px] sm:text-xs text-slate-500"
+            >
               💡 Hadits ini menunjukkan bahwa derajat tertinggi seorang muslim
               adalah ketika ia terus belajar dan membagikan ilmu Al-Qur'an.
             </div>
@@ -304,32 +395,38 @@
 
           <!-- Hadits 2 -->
           <div
-            class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between"
+            class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between"
           >
             <div>
-              <div class="flex items-center justify-between mb-4">
+              <div
+                class="flex flex-wrap gap-2 items-center justify-between mb-4"
+              >
                 <span
-                  class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
+                  class="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
                 >
                   HR. Muslim
                 </span>
-                <span class="text-xs text-slate-400">Sanad: Aisyah RA</span>
+                <span class="text-[11px] sm:text-xs text-slate-400"
+                  >Sanad: Aisyah RA</span
+                >
               </div>
               <p
-                class="font-arabic text-xl text-right text-slate-800 leading-relaxed font-bold mb-4"
+                class="font-arabic text-lg sm:text-xl text-right text-slate-800 leading-relaxed font-bold mb-3 sm:mb-4"
               >
                 الْمَاهِرُ بِالْقُرْآنِ مَعَ السَّفَرَةِ الْكِرَامِ الْبَرَرَةِ
                 وَالَّذِي يَقْرَأُ الْقُرْآنَ وَيَتَتَعْتَعُ فِيهِ وَهُوَ
                 عَلَيْهِ شَاقٌّ لَهُ أَجْرَانِ
               </p>
-              <p class="text-slate-700 text-sm leading-relaxed mb-4">
+              <p class="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
                 <strong>Artinya:</strong> "Orang yang mahir membaca Al-Qur'an
                 akan bersama para malaikat yang mulia lagi berbakti. Sedangkan
                 orang yang membaca Al-Qur'an dengan terbata-bata dan merasa
                 kesulitan, maka baginya dua pahala."
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <div
+              class="pt-3 border-t border-slate-100 text-[11px] sm:text-xs text-slate-500"
+            >
               💡 Motivasi bagi pemula: Jangan menyerah meskipun masih
               terbata-bata, Allah memberikan ganjaran dua kali lipat.
             </div>
@@ -337,34 +434,38 @@
 
           <!-- Hadits 3 -->
           <div
-            class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between md:col-span-2"
+            class="bg-white rounded-2xl p-4 sm:p-6 border border-slate-200/80 shadow-sm flex flex-col justify-between md:col-span-2"
           >
             <div>
-              <div class="flex items-center justify-between mb-4">
+              <div
+                class="flex flex-wrap gap-2 items-center justify-between mb-4"
+              >
                 <span
-                  class="px-3 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
+                  class="px-2.5 py-1 bg-amber-50 text-amber-700 text-xs font-bold rounded-lg border border-amber-100"
                 >
                   HR. Tirmidzi
                 </span>
-                <span class="text-xs text-slate-400"
+                <span class="text-[11px] sm:text-xs text-slate-400"
                   >Sanad: Abdullah bin Mas'ud RA</span
                 >
               </div>
               <p
-                class="font-arabic text-xl sm:text-2xl text-right text-slate-800 leading-relaxed font-bold mb-4"
+                class="font-arabic text-lg sm:text-2xl text-right text-slate-800 leading-relaxed font-bold mb-3 sm:mb-4"
               >
                 مَنْ قَرَأَ حَرْفًا مِنْ كِتَابِ اللَّهِ فَلَهُ بِهِ حَسَنَةٌ
                 وَالْحَسَنَةُ بِعَشْرِ أَمْثَالِهَا
               </p>
               <p
-                class="text-slate-700 text-sm sm:text-base leading-relaxed mb-4"
+                class="text-slate-700 text-xs sm:text-base leading-relaxed mb-4"
               >
                 <strong>Artinya:</strong> "Barangsiapa membaca satu huruf dari
                 Kitab Allah (Al-Qur'an), maka baginya satu kebaikan. Dan satu
                 kebaikan itu dilipatgandakan menjadi sepuluh kali lipat..."
               </p>
             </div>
-            <div class="pt-4 border-t border-slate-100 text-xs text-slate-500">
+            <div
+              class="pt-3 border-t border-slate-100 text-[11px] sm:text-xs text-slate-500"
+            >
               💡 Keutamaan pahala yang melimpah dari setiap huruf yang kita
               pelajari dan baca.
             </div>
@@ -375,23 +476,25 @@
       <!-- SECTION 3: RINGKASAN KEUTAMAAN -->
       <section
         id="keutamaan"
-        class="bg-gradient-to-br from-emerald-800 to-slate-900 text-white rounded-3xl p-8 sm:p-12"
+        class="bg-gradient-to-br from-emerald-800 to-slate-900 text-white rounded-2xl sm:rounded-3xl p-6 sm:p-12"
       >
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <h2 class="text-2xl sm:text-3xl font-bold">
+        <div class="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+          <h2 class="text-xl sm:text-3xl font-bold">
             Keutamaan Belajar Al-Qur'an
           </h2>
-          <p class="text-emerald-200 text-sm mt-2">
+          <p class="text-emerald-200 text-xs sm:text-sm mt-2">
             Mengapa kita harus menyisihkan waktu setiap hari untuk Al-Qur'an?
           </p>
         </div>
 
-        <div class="grid sm:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
           <div
-            class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center"
+            class="bg-white/10 backdrop-blur-sm p-5 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10 text-center"
           >
-            <div class="text-3xl mb-3">🛡️</div>
-            <h3 class="font-bold text-lg mb-1">Syafa'at Hari Kiamat</h3>
+            <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🛡️</div>
+            <h3 class="font-bold text-base sm:text-lg mb-1">
+              Syafa'at Hari Kiamat
+            </h3>
             <p class="text-xs text-emerald-100 leading-relaxed">
               Al-Qur'an akan datang pada hari kiamat sebagai pemberi syafa'at
               bagi sahabat-sahabatnya yang rajin membacanya.
@@ -399,10 +502,10 @@
           </div>
 
           <div
-            class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center"
+            class="bg-white/10 backdrop-blur-sm p-5 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10 text-center"
           >
-            <div class="text-3xl mb-3">🕊️</div>
-            <h3 class="font-bold text-lg mb-1">Ketenangan Hati</h3>
+            <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🕊️</div>
+            <h3 class="font-bold text-base sm:text-lg mb-1">Ketenangan Hati</h3>
             <p class="text-xs text-emerald-100 leading-relaxed">
               Mendekatkan diri dengan Al-Qur'an membawa ketenangan jiwa
               (sakinah) dan dinaungi oleh para malaikat.
@@ -410,10 +513,12 @@
           </div>
 
           <div
-            class="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/10 text-center"
+            class="bg-white/10 backdrop-blur-sm p-5 sm:p-6 rounded-xl sm:rounded-2xl border border-white/10 text-center"
           >
-            <div class="text-3xl mb-3">👑</div>
-            <h3 class="font-bold text-lg mb-1">Derajat yang Tinggi</h3>
+            <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">👑</div>
+            <h3 class="font-bold text-base sm:text-lg mb-1">
+              Derajat yang Tinggi
+            </h3>
             <p class="text-xs text-emerald-100 leading-relaxed">
               Allah mengangkat derajat suatu kaum dengan Al-Qur'an ini dan
               merendahkan yang meninggalkannya.
@@ -424,20 +529,55 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
+    <footer
+      class="bg-slate-900 text-slate-400 py-8 sm:py-10 border-t border-slate-800"
+    >
       <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-sm">
+        <p class="text-xs sm:text-sm">
           &copy; <span id="year"></span> Mari Belajar Al-Qur'an. Dibuat dengan
           HTML, CSS & JavaScript.
         </p>
       </div>
     </footer>
 
-    <!-- JS for Dynamic Year and Active Link Highlight -->
+    <!-- Back To Top Floating Button (Mobile Friendly) -->
+    <button
+      id="back-to-top"
+      class="fixed bottom-5 right-5 z-40 bg-emerald-600 text-white p-3 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 hover:bg-emerald-700 focus:outline-none"
+      aria-label="Kembali ke atas"
+    >
+      <svg
+        class="w-5 h-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2.5"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
+      </svg>
+    </button>
+
+    <!-- JS for Mobile Menu, Dynamic Year and Active Link Highlight -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // Update tahun secara otomatis di footer
         document.getElementById("year").textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const mobileMenu = document.getElementById("mobile-menu");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+
+        mobileMenuBtn.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+          menuIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
+        });
 
         // Highlight link menu aktif berdasarkan file yang sedang dibuka
         const currentPath =
@@ -450,6 +590,22 @@
             link.classList.add("text-emerald-600", "font-semibold");
             link.classList.remove("text-slate-600");
           }
+        });
+
+        // Floating Back to Top Button Logic
+        const backToTopBtn = document.getElementById("back-to-top");
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 300) {
+            backToTopBtn.classList.remove("opacity-0", "pointer-events-none");
+            backToTopBtn.classList.add("opacity-100");
+          } else {
+            backToTopBtn.classList.add("opacity-0", "pointer-events-none");
+            backToTopBtn.classList.remove("opacity-100");
+          }
+        });
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
       });
     </script>
