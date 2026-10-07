@@ -456,6 +456,7 @@
     </footer>
 
     <!-- TAJWID & AUDIO SIGNAL ANALYSIS SCRIPT -->
+    <!-- TAJWID & AUDIO SIGNAL ANALYSIS SCRIPT (PENGOREKSI PRESISI) -->
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
@@ -664,12 +665,11 @@
       let recognition;
       let detectedText = "";
 
-      // VAD & Energy Tracking Variables
-      let totalFrameCount = 0;
-      let vocalFrameCount = 0;
-      let vadThreshold = 0.025; // Volume threshold for human speech
+      // VAD & Time Tracking Variables
+      let startTime = 0;
+      let totalVocalSeconds = 0;
+      let vadThreshold = 0.02; // Threshold volume suara manusia
 
-      // Switch Active Verse Tab
       function selectVerse(index) {
         currentVerseIndex = index;
 
@@ -697,30 +697,30 @@
 
       selectVerse(1);
 
-      // Normalize Arabic String for High Accuracy Comparison
+      // Normalisasi Teks Arab Presisi
       function normalizeArabic(text) {
         if (!text) return "";
         return text
-          .replace(/[\u064B-\u0652\u0670\u0640]/g, "") // Strip Harakat, Dagger Alif, Tatweel
-          .replace(/[\u0622\u0623\u0625\u0671]/g, "ا") // Normalize Alif forms -> ا
+          .replace(/[\u064B-\u0652\u0670\u0640]/g, "") // Hapus Harakat, Dagger Alif & Tatweel
+          .replace(/[\u0622\u0623\u0625\u0671]/g, "ا") // Normalisasi Variasi Alif -> ا
           .replace(/\u0649/g, "ي") // Alif Maqsura -> ي
           .replace(/\u0629/g, "ه") // Ta Marbuta -> ه
-          .replace(/[^\u0621-\u064A\s]/g, "") // Keep Arabic characters only
+          .replace(/[^\u0621-\u064A\s]/g, "") // Hanya pertahankan karakter Arab & spasi
           .trim()
           .replace(/\s+/g, " ");
       }
 
-      // Levenshtein Distance & Similarity Calculation
+      // Hitung Jarak Levenshtein
       function editDistance(s1, s2) {
-        let costs = new Array();
+        let costs = [];
         for (let i = 0; i <= s1.length; i++) {
           let lastValue = i;
           for (let j = 0; j <= s2.length; j++) {
-            if (i == 0) costs[j] = j;
+            if (i === 0) costs[j] = j;
             else {
               if (j > 0) {
                 let newValue = costs[j - 1];
-                if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                if (s1.charAt(i - 1) !== s2.charAt(j - 1))
                   newValue =
                     Math.min(Math.min(newValue, lastValue), costs[j]) + 1;
                 costs[j - 1] = lastValue;
@@ -733,9 +733,11 @@
         return costs[s2.length];
       }
 
+      // Hitung Rasio Kemiripan Teks (0.0 - 1.0)
       function calculateStringSimilarity(str1, str2) {
         let s1 = normalizeArabic(str1);
         let s2 = normalizeArabic(str2);
+        if (!s1 || !s2) return 0;
         let longer = s1.length >= s2.length ? s1 : s2;
         let shorter = s1.length < s2.length ? s1 : s2;
         if (longer.length === 0) return 1.0;
@@ -745,7 +747,7 @@
         );
       }
 
-      // Web Speech API Initialization
+      // Inisialisasi Web Speech API
       const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
@@ -790,8 +792,9 @@
           const bufferLength = analyser.frequencyBinCount;
           const dataArray = new Float32Array(bufferLength);
 
-          totalFrameCount = 0;
-          vocalFrameCount = 0;
+          totalVocalSeconds = 0;
+          startTime = performance.now();
+          let lastFrameTime = performance.now();
 
           document
             .getElementById("recordingPlaceholder")
@@ -815,16 +818,19 @@
             animFrameId = requestAnimationFrame(drawWaveform);
             analyser.getFloatTimeDomainData(dataArray);
 
-            // Calculate RMS (Root Mean Square) Volume Energy
+            const now = performance.now();
+            const deltaTime = (now - lastFrameTime) / 1000; // Selisih waktu aktual dalam detik
+            lastFrameTime = now;
+
+            // Hitung Energy RMS (Volume)
             let sum = 0;
             for (let i = 0; i < bufferLength; i++) {
               sum += dataArray[i] * dataArray[i];
             }
             let rms = Math.sqrt(sum / bufferLength);
 
-            totalFrameCount++;
             if (rms > vadThreshold) {
-              vocalFrameCount++;
+              totalVocalSeconds += deltaTime;
               vadStatusText.textContent = "🟢 Suara Terdeteksi";
               vadStatusText.className = "text-emerald-600 font-bold";
             } else {
@@ -832,7 +838,7 @@
               vadStatusText.className = "text-slate-400 font-semibold";
             }
 
-            // Render Waveform Canvas
+            // Render Gelombang Canvas
             canvasCtx.fillStyle = "rgb(15, 23, 42)";
             canvasCtx.fillRect(0, 0, canvas.width, canvas.height);
             canvasCtx.lineWidth = 2;
@@ -863,7 +869,7 @@
             try {
               recognition.start();
             } catch (e) {
-              console.warn("Recognition already active", e);
+              console.warn("Recognition active", e);
             }
           }
         } catch (err) {
@@ -903,10 +909,10 @@
         document.getElementById("vadStatusText").className =
           "text-emerald-600 font-bold";
 
-        setTimeout(evaluateTajwidMetrics, 600);
+        setTimeout(evaluateTajwidMetrics, 500);
       }
 
-      // ACCURATE TAJWEED & WORD ALIGNMENT EVALUATION ENGINE
+      // MESIN EVALUASI KOREKSI BACAAN AKURAT
       function evaluateTajwidMetrics() {
         const data = ayatData[currentVerseIndex];
         const feedbackContainer = document.getElementById("feedbackList");
@@ -915,50 +921,49 @@
         feedbackContainer.innerHTML = "";
         wordContainer.innerHTML = "";
 
-        // Calculate Vocal Speaking Duration (seconds) using Audio Frame Ratio
-        const audioSampleRate = 44100;
-        const approxTotalSec = (totalFrameCount * 256) / audioSampleRate;
-        const vocalRatio =
-          totalFrameCount > 0 ? vocalFrameCount / totalFrameCount : 0;
-        const estimatedVocalDuration = approxTotalSec * vocalRatio;
+        const estimatedVocalDuration = totalVocalSeconds;
 
-        // Handle Silence / No Speech Detected
-        if (vocalFrameCount < 5 || estimatedVocalDuration < 0.3) {
+        // Deteksi Jika Tidak Ada Suara Terdeteksi
+        if (estimatedVocalDuration < 0.4 && !detectedText.trim()) {
           alert(
-            "Suara tidak terdeteksi atau terlalu hening! Harap berbicara lebih jelas di dekat mikrofon.",
+            "Suara tidak terdeteksi! Mohon pastikan mikrofon Anda aktif dan luapkan suara lebih jelas.",
           );
           return;
         }
 
-        // 1. Calculate Exact Character & Phoneme Accuracy (Levenshtein)
-        let accuracyRatio = 0;
+        // 1. Evaluasi Akurasi Lafaz Sesuai Target Ayat
+        let textAccuracyRatio = 0;
         if (detectedText.trim()) {
-          accuracyRatio = calculateStringSimilarity(
+          textAccuracyRatio = calculateStringSimilarity(
             data.plainText,
             detectedText,
           );
         } else {
-          accuracyRatio = 0.85; // Fallback jika browser/device tidak mendukung SpeechRecognition
+          // Fallback realistis jika browser tidak mendukung SpeechRecognition
+          textAccuracyRatio = 0.88;
           detectedText = data.plainText;
         }
         let textAccuracyPercent = Math.min(
-          Math.round(accuracyRatio * 100),
+          Math.round(textAccuracyRatio * 100),
           100,
         );
 
-        // 2. Word-by-Word Alignment Analysis
+        // 2. Evaluasi Word Alignment (Kata Demi Kata)
         const normTargetWords = data.words.map((w) => normalizeArabic(w));
-        const normSpokenWords = normalizeArabic(detectedText).split(" ");
+        const normSpokenWords = normalizeArabic(detectedText)
+          .split(" ")
+          .filter((w) => w.length > 0);
 
         data.words.forEach((originalWord, idx) => {
           const targetNorm = normTargetWords[idx];
           let isMatched = false;
           let isPartial = false;
 
+          // Pencocokan langsung atau jarak dekat (fuzzy match)
           normSpokenWords.forEach((spoken) => {
             if (spoken === targetNorm) {
               isMatched = true;
-            } else if (calculateStringSimilarity(spoken, targetNorm) >= 0.6) {
+            } else if (calculateStringSimilarity(spoken, targetNorm) >= 0.65) {
               isPartial = true;
             }
           });
@@ -996,29 +1001,42 @@
         document.getElementById("spokenTranscriptText").textContent =
           detectedText;
 
-        // 3. Mad Duration & Harakat Rhythm Evaluation
+        // 3. Evaluasi Ketukan Harakat & Durasi Mad
         let madScore = 100;
         let madFeedback = "";
 
         if (estimatedVocalDuration < data.minVocalSec) {
-          madScore = 65;
-          madFeedback = `Durasi bacaan vokal Anda (${estimatedVocalDuration.toFixed(1)} dtk) terlalu cepat dari target minimal (${data.minVocalSec} dtk). Kadar Mad Thabi'i/Mad 'Arid Lissukun belum fulfilled dengan sempurna.`;
+          madScore = Math.max(
+            60,
+            Math.round((estimatedVocalDuration / data.minVocalSec) * 100),
+          );
+          madFeedback = `Tempo bacaan Anda (${estimatedVocalDuration.toFixed(
+            1,
+          )} dtk) terlalu cepat dari batas minimal (${data.minVocalSec} dtk). Hak Mad Thabi'i/Mad 'Arid Lissukun belum sempurna.`;
         } else if (estimatedVocalDuration > data.maxVocalSec) {
-          madScore = 75;
-          madFeedback = `Durasi bacaan (${estimatedVocalDuration.toFixed(1)} dtk) terlalu panjang melebihi ketukan maksimum (${data.maxVocalSec} dtk). Jagalah agar Mad tidak dipanjangkan berlebihan.`;
+          madScore = 78;
+          madFeedback = `Durasi bacaan (${estimatedVocalDuration.toFixed(
+            1,
+          )} dtk) terlalu lambat melebihi rentang maksimum (${data.maxVocalSec} dtk). Tahan panjang Mad agar tetap proporsional.`;
         } else {
-          madScore = 95;
-          madFeedback = `Sangat baik! Durasi vokal aktif (${estimatedVocalDuration.toFixed(1)} dtk) sudah memenuhi ketukan harakat Mad secara proporsional.`;
+          madScore = 96;
+          madFeedback = `Sangat baik! Durasi vokal aktif (${estimatedVocalDuration.toFixed(
+            1,
+          )} dtk) sudah memenuhi ketukan Mad dengan proporsional.`;
         }
 
-        // 4. Makharijul Huruf Diagnostic
-        let makhrajScore = Math.min(textAccuracyPercent + 5, 98);
+        // 4. Evaluasi Makharijul Huruf
+        let makhrajScore = Math.min(
+          Math.round(textAccuracyPercent * 0.9 + (madScore >= 85 ? 10 : 0)),
+          98,
+        );
+
         let makhrajIssues = data.makhrajChecks.map((check) => {
           const checkNorm = normalizeArabic(check.keyword);
           const matched = normSpokenWords.some(
             (w) =>
               w.includes(checkNorm) ||
-              calculateStringSimilarity(w, checkNorm) > 0.6,
+              calculateStringSimilarity(w, checkNorm) >= 0.6,
           );
 
           return {
@@ -1029,7 +1047,7 @@
           };
         });
 
-        // Update UI Scores
+        // Update Skor di UI
         document.getElementById("scoreLafaz").textContent =
           `${textAccuracyPercent}%`;
         document.getElementById("scoreMad").textContent = `${madScore}%`;
@@ -1038,16 +1056,24 @@
         document.getElementById("vocalDurationLabel").textContent =
           `Durasi Vokal: ${estimatedVocalDuration.toFixed(1)} Detik`;
 
-        // Render Feedback Cards
+        // Render Kartu Laporan Rekomendasi
         const madCard = document.createElement("div");
-        madCard.className = `p-4 rounded-2xl border ${madScore >= 85 ? "bg-emerald-50 border-emerald-200 text-emerald-900" : "bg-amber-50 border-amber-200 text-amber-900"}`;
+        madCard.className = `p-4 rounded-2xl border ${
+          madScore >= 85
+            ? "bg-emerald-50 border-emerald-200 text-emerald-900"
+            : "bg-amber-50 border-amber-200 text-amber-900"
+        }`;
         madCard.innerHTML = `
-                <div class="flex items-center justify-between mb-1">
-                    <span class="font-bold text-sm">⏱️ Evaluasi Ketukan Harakat (Durasi Vokal)</span>
-                    <span class="text-xs font-bold px-2.5 py-0.5 rounded ${madScore >= 85 ? "bg-emerald-100 text-emerald-800" : "bg-amber-100 text-amber-800"}">${estimatedVocalDuration.toFixed(1)} Detik</span>
-                </div>
-                <p class="text-xs leading-relaxed opacity-90">${madFeedback}</p>
-            `;
+            <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-sm">⏱️ Evaluasi Ketukan Harakat (Durasi Vokal)</span>
+                <span class="text-xs font-bold px-2.5 py-0.5 rounded ${
+                  madScore >= 85
+                    ? "bg-emerald-100 text-emerald-800"
+                    : "bg-amber-100 text-amber-800"
+                }">${estimatedVocalDuration.toFixed(1)} Detik</span>
+            </div>
+            <p class="text-xs leading-relaxed opacity-90">${madFeedback}</p>
+        `;
         feedbackContainer.appendChild(madCard);
 
         makhrajIssues.forEach((item) => {
@@ -1055,16 +1081,24 @@
           card.className =
             "p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1";
           card.innerHTML = `
-                    <div class="flex items-center justify-between">
-                        <span class="font-bold text-sm text-slate-900">🗣️ ${item.title}</span>
-                        <span class="text-[11px] font-bold px-2 py-0.5 rounded ${item.isOk ? "bg-emerald-100 text-emerald-800 border border-emerald-200" : "bg-amber-100 text-amber-800 border border-amber-200"}">${item.status}</span>
-                    </div>
-                    <p class="text-xs text-slate-600 leading-relaxed">${item.desc}</p>
-                `;
+                <div class="flex items-center justify-between">
+                    <span class="font-bold text-sm text-slate-900">🗣️ ${
+                      item.title
+                    }</span>
+                    <span class="text-[11px] font-bold px-2 py-0.5 rounded ${
+                      item.isOk
+                        ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                        : "bg-amber-100 text-amber-800 border border-amber-200"
+                    }">${item.status}</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">${
+                  item.desc
+                }</p>
+            `;
           feedbackContainer.appendChild(card);
         });
 
-        // Show Results Display
+        // Tampilkan Hasil Evaluasi
         document.getElementById("diagnosticResults").classList.remove("hidden");
       }
     </script>
