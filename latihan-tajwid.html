@@ -8,6 +8,11 @@
     </title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js CDN (Diperlukan untuk Navbar Mobile) -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
     <!-- Font Awesome Icons -->
     <link
       rel="stylesheet"
@@ -21,6 +26,9 @@
       rel="stylesheet"
     />
     <style>
+      [x-cloak] {
+        display: none !important;
+      }
       body {
         font-family: "Inter", sans-serif;
       }
@@ -34,23 +42,31 @@
   >
     <!-- NAVBAR -->
     <nav
-      class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm"
+      class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
+      x-data="{ mobileMenuOpen: false }"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-          <a href="index.html" class="flex items-center space-x-3">
+        <div class="flex justify-between items-center h-16 sm:h-20">
+          <!-- Logo -->
+          <a
+            href="index.html"
+            class="flex items-center space-x-2.5 sm:space-x-3"
+          >
             <div
-              class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-emerald-200"
+              class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md shadow-emerald-200 shrink-0"
             >
               📖
             </div>
-            <span class="font-bold text-xl text-slate-900 tracking-tight"
-              >MariBelajar<span class="text-emerald-600">Alquran</span></span
+            <span
+              class="font-bold text-base sm:text-xl text-slate-900 tracking-tight"
             >
+              Mari Belajar <span class="text-emerald-600">Alquran</span>
+            </span>
           </a>
 
+          <!-- Desktop Navigation Links -->
           <div
-            class="hidden md:flex items-center space-x-8 font-medium text-slate-600"
+            class="hidden md:flex items-center space-x-6 lg:space-x-8 font-medium text-slate-600 text-sm lg:text-base"
           >
             <a href="index.html" class="hover:text-emerald-600 transition"
               >Beranda</a
@@ -68,20 +84,90 @@
               class="hover:text-emerald-600 transition"
               >Materi Tajwid</a
             >
-            <a href="latihan.html" class="text-emerald-600 font-semibold"
+            <a href="latihan-tajwid.html" class="text-emerald-600 font-semibold"
               >Latihan</a
             >
           </div>
 
-          <div>
-            <a
-              href="index.html"
-              class="px-4 py-2.5 text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition inline-flex items-center gap-2"
+          <!-- Mobile Hamburger Button -->
+          <div class="flex items-center gap-2 md:hidden">
+            <button
+              @click="mobileMenuOpen = !mobileMenuOpen"
+              type="button"
+              class="p-2 rounded-xl text-slate-600 hover:text-emerald-600 hover:bg-slate-100 focus:outline-none"
+              aria-label="Toggle Menu"
             >
-              ← Kembali
-            </a>
+              <svg
+                x-show="!mobileMenuOpen"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+              <svg
+                x-show="mobileMenuOpen"
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                x-cloak
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
           </div>
         </div>
+      </div>
+
+      <!-- Mobile Menu Dropdown -->
+      <div
+        x-show="mobileMenuOpen"
+        x-transition:enter="transition ease-out duration-200"
+        x-transition:enter-start="opacity-0 -translate-y-2"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-150"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 -translate-y-2"
+        class="md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-2"
+        x-cloak
+      >
+        <a
+          href="index.html"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-emerald-50 hover:text-emerald-600"
+          >Beranda</a
+        >
+        <a
+          href="dalil-alquran.html"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-emerald-50 hover:text-emerald-600"
+          >Dalil Al-Qur'an</a
+        >
+        <a
+          href="surah.html"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-emerald-50 hover:text-emerald-600"
+          >Daftar Surah</a
+        >
+        <a
+          href="materi-tajwid.html"
+          class="block px-3 py-2 rounded-lg text-base font-medium text-slate-600 hover:bg-emerald-50 hover:text-emerald-600"
+          >Materi Tajwid</a
+        >
+        <a
+          href="latihan-tajwid.html"
+          class="block px-3 py-2 rounded-lg text-base font-semibold bg-emerald-50 text-emerald-600"
+          >Latihan</a
+        >
       </div>
     </nav>
 
@@ -244,7 +330,7 @@
             <button
               id="btnStartRecord"
               onclick="startTajwidAnalysis()"
-              class="w-full sm:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-200 flex items-center justify-center gap-3 transition"
+              class="w-full sm:w-auto px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm shadow-lg shadow-emerald-200 flex items-center justify-center gap-3 transition cursor-pointer"
             >
               <i class="fa-solid fa-microphone text-lg"></i> Mulai Uji Bacaan
             </button>
@@ -253,7 +339,7 @@
               id="btnStopRecord"
               onclick="stopTajwidAnalysis()"
               disabled
-              class="w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-3 transition"
+              class="w-full sm:w-auto px-8 py-3.5 bg-rose-600 hover:bg-rose-700 disabled:bg-slate-200 disabled:text-slate-400 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-3 transition cursor-not-allowed"
             >
               <i class="fa-solid fa-square text-lg"></i> Selesai & Analisis
               Presisi
@@ -340,7 +426,7 @@
             Suara Terdeteksi:
             <span
               id="spokenTranscriptText"
-              class="font-arabic text-base text-slate-800 font-bold not-italic"
+              class="font-arabic text-base text-slate-800 font-bold not-italic ms-1"
             ></span>
           </div>
         </div>
@@ -573,6 +659,7 @@
       let audioContext;
       let analyser;
       let microphone;
+      let audioStream;
       let animFrameId;
       let recognition;
       let detectedText = "";
@@ -658,31 +745,45 @@
         );
       }
 
-      // Web Speech API
+      // Web Speech API Initialization
       const SpeechRecognition =
         window.SpeechRecognition || window.webkitSpeechRecognition;
       if (SpeechRecognition) {
         recognition = new SpeechRecognition();
         recognition.lang = "ar-SA";
         recognition.continuous = true;
-        recognition.interimResults = false;
+        recognition.interimResults = true;
 
         recognition.onresult = function (event) {
-          detectedText = event.results[event.results.length - 1][0].transcript;
+          let currentTranscript = "";
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            currentTranscript += event.results[i][0].transcript;
+          }
+          if (currentTranscript.trim()) {
+            detectedText = currentTranscript;
+          }
+        };
+
+        recognition.onerror = function (event) {
+          console.warn("Speech recognition error:", event.error);
         };
       }
 
       async function startTajwidAnalysis() {
         try {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            audio: true,
+          audioStream = await navigator.mediaDevices.getUserMedia({
+            audio: { echoCancellation: true, noiseSuppression: true },
           });
 
           audioContext = new (
             window.AudioContext || window.webkitAudioContext
           )();
+          if (audioContext.state === "suspended") {
+            await audioContext.resume();
+          }
+
           analyser = audioContext.createAnalyser();
-          microphone = audioContext.createMediaStreamSource(stream);
+          microphone = audioContext.createMediaStreamSource(audioStream);
           microphone.connect(analyser);
 
           analyser.fftSize = 512;
@@ -695,8 +796,15 @@
           document
             .getElementById("recordingPlaceholder")
             .classList.add("hidden");
-          document.getElementById("btnStartRecord").disabled = true;
-          document.getElementById("btnStopRecord").disabled = false;
+
+          const btnStart = document.getElementById("btnStartRecord");
+          const btnStop = document.getElementById("btnStopRecord");
+
+          btnStart.disabled = true;
+          btnStart.classList.add("cursor-not-allowed", "opacity-50");
+          btnStop.disabled = false;
+          btnStop.classList.remove("cursor-not-allowed");
+
           document.getElementById("diagnosticResults").classList.add("hidden");
 
           const canvas = document.getElementById("waveformCanvas");
@@ -751,7 +859,13 @@
           drawWaveform();
 
           detectedText = "";
-          if (recognition) recognition.start();
+          if (recognition) {
+            try {
+              recognition.start();
+            } catch (e) {
+              console.warn("Recognition already active", e);
+            }
+          }
         } catch (err) {
           alert(
             "Akses mikrofon ditolak atau tidak didukung di browser ini: " +
@@ -769,17 +883,27 @@
           } catch (e) {}
         }
 
-        if (microphone && microphone.mediaStream) {
-          microphone.mediaStream.getTracks().forEach((track) => track.stop());
+        if (audioStream) {
+          audioStream.getTracks().forEach((track) => track.stop());
         }
 
-        document.getElementById("btnStartRecord").disabled = false;
-        document.getElementById("btnStopRecord").disabled = true;
+        if (audioContext && audioContext.state !== "closed") {
+          audioContext.close();
+        }
+
+        const btnStart = document.getElementById("btnStartRecord");
+        const btnStop = document.getElementById("btnStopRecord");
+
+        btnStart.disabled = false;
+        btnStart.classList.remove("cursor-not-allowed", "opacity-50");
+        btnStop.disabled = true;
+        btnStop.classList.add("cursor-not-allowed");
+
         document.getElementById("vadStatusText").textContent = "● Selesai";
         document.getElementById("vadStatusText").className =
           "text-emerald-600 font-bold";
 
-        setTimeout(evaluateTajwidMetrics, 800);
+        setTimeout(evaluateTajwidMetrics, 600);
       }
 
       // ACCURATE TAJWEED & WORD ALIGNMENT EVALUATION ENGINE
@@ -792,34 +916,35 @@
         wordContainer.innerHTML = "";
 
         // Calculate Vocal Speaking Duration (seconds) using Audio Frame Ratio
-        const audioContextSampleRate = audioContext
-          ? audioContext.sampleRate
-          : 44100;
-        const approxTotalSec = (totalFrameCount * 256) / audioContextSampleRate;
+        const audioSampleRate = 44100;
+        const approxTotalSec = (totalFrameCount * 256) / audioSampleRate;
         const vocalRatio =
           totalFrameCount > 0 ? vocalFrameCount / totalFrameCount : 0;
         const estimatedVocalDuration = approxTotalSec * vocalRatio;
 
         // Handle Silence / No Speech Detected
-        if (vocalFrameCount < 10 || estimatedVocalDuration < 0.5) {
+        if (vocalFrameCount < 5 || estimatedVocalDuration < 0.3) {
           alert(
-            "Suara tidak terdeteksi atau terlalu hening! Harap berbicara lebih jelas dekat mikrofon.",
+            "Suara tidak terdeteksi atau terlalu hening! Harap berbicara lebih jelas di dekat mikrofon.",
           );
           return;
         }
 
         // 1. Calculate Exact Character & Phoneme Accuracy (Levenshtein)
         let accuracyRatio = 0;
-        if (detectedText) {
+        if (detectedText.trim()) {
           accuracyRatio = calculateStringSimilarity(
             data.plainText,
             detectedText,
           );
         } else {
-          accuracyRatio = 0.82; // Fallback untuk browser tanpa WebSpeech
+          accuracyRatio = 0.85; // Fallback jika browser/device tidak mendukung SpeechRecognition
           detectedText = data.plainText;
         }
-        let textAccuracyPercent = Math.round(accuracyRatio * 100);
+        let textAccuracyPercent = Math.min(
+          Math.round(accuracyRatio * 100),
+          100,
+        );
 
         // 2. Word-by-Word Alignment Analysis
         const normTargetWords = data.words.map((w) => normalizeArabic(w));
@@ -877,13 +1002,13 @@
 
         if (estimatedVocalDuration < data.minVocalSec) {
           madScore = 65;
-          madFeedback = `Durasi bacaan vokal Anda (${estimatedVocalDuration.toFixed(1)} dtk) terlalu cepat dari target minimal (${data.minVocalSec} dtk). Kadar Mad Thabi'i/Mad 'Arid Lissukun belum terpenuhi sempurna.`;
+          madFeedback = `Durasi bacaan vokal Anda (${estimatedVocalDuration.toFixed(1)} dtk) terlalu cepat dari target minimal (${data.minVocalSec} dtk). Kadar Mad Thabi'i/Mad 'Arid Lissukun belum fulfilled dengan sempurna.`;
         } else if (estimatedVocalDuration > data.maxVocalSec) {
           madScore = 75;
-          madFeedback = `Durasi bacaan (${estimatedVocalDuration.toFixed(1)} dtk) terlalu panjang melebihi ketukan maksimim (${data.maxVocalSec} dtk). Jagalah agar Mad tidak dipanjangkan berlebihan.`;
+          madFeedback = `Durasi bacaan (${estimatedVocalDuration.toFixed(1)} dtk) terlalu panjang melebihi ketukan maksimum (${data.maxVocalSec} dtk). Jagalah agar Mad tidak dipanjangkan berlebihan.`;
         } else {
           madScore = 95;
-          madFeedback = `Sangat baik! Durasi vokal aktif (${estimatedVocalDuration.toFixed(1)} dtk) sudah memenuhi ketukan harakat Mad dengan proporsional.`;
+          madFeedback = `Sangat baik! Durasi vokal aktif (${estimatedVocalDuration.toFixed(1)} dtk) sudah memenuhi ketukan harakat Mad secara proporsional.`;
         }
 
         // 4. Makharijul Huruf Diagnostic
